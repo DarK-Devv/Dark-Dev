@@ -85,7 +85,7 @@ const BentoGrid = () => {
                             {/* Professional Highlights */}
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-3 text-xs font-mono">
                                 <div className="bg-black/30 p-3 border border-white/5 rounded-sm">
-                                    <span className="text-ember-orange">💼</span> <span className="text-stone-400">3 years at</span> <span className="text-white font-bold">Euroclear</span>
+                                    <span className="text-ember-orange">💼</span> <span className="text-stone-400">4 years at</span> <span className="text-white font-bold">Euroclear</span>
                                 </div>
                                 <div className="bg-black/30 p-3 border border-white/5 rounded-sm">
                                     <span className="text-ember-orange">🎓</span> <span className="text-stone-400">ICT Engineering</span> <span className="text-white">Specialist</span>

@@ -25,7 +25,7 @@ const Experience = () => {
                     >
                         <div className="absolute -left-[9px] top-0 w-4 h-4 rounded-full bg-brand-purple shadow-[0_0_10px_rgba(139,92,246,0.5)]"></div>
                         <div className="min-w-[200px]">
-                            <span className="text-brand-cyan font-mono text-sm">3 Years</span>
+                            <span className="text-brand-cyan font-mono text-sm">4 Years</span>
                             <h3 className="text-xl font-bold text-white mt-1">Service Desk Specialist</h3>
                             <div className="flex items-center gap-2 text-gray-400 mt-1">
                                 <Building2 size={16} />
