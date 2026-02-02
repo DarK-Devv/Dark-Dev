@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://Dark-Dev.github.io/Dark-Dev",
+  "homepage": "https://DarK-Devv.github.io/Dark-Dev",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
