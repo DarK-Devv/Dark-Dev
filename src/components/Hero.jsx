@@ -99,7 +99,7 @@ const Hero = () => {
                     transition={{ duration: 0.8 }}
                     className="order-1 lg:order-2 flex justify-center relative"
                 >
-                    <div className="relative w-72 h-72 md:w-[500px] md:h-[500px]">
+                    <div className="relative w-64 h-64 md:w-[380px] md:h-[380px]">
                         {/* Glowing Orbs behind */}
                         <div className="absolute top-0 right-0 w-3/4 h-3/4 bg-ember-orange/15 rounded-full blur-[80px] animate-pulse-slow"></div>
                         <div className="absolute bottom-0 left-0 w-3/4 h-3/4 bg-ember-red/10 rounded-full blur-[80px] animate-pulse-slow delay-1000"></div>
