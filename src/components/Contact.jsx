@@ -36,14 +36,9 @@ const Contact = () => {
                         transition={{ delay: 0.2 }}
                         className="flex flex-col md:flex-row items-center justify-center gap-8"
                     >
-                        <a href="mailto:veeti.pere@example.com" className="group flex items-center gap-3 bg-ember-orange hover:bg-white text-black px-10 py-4 rounded-sm font-bold text-sm tracking-widest transition-all duration-300 shadow-[0_0_20px_-5px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.5)]">
+                        <a href="mailto:veeti.pere@gmail.com" className="group flex items-center gap-3 bg-ember-orange hover:bg-white text-black px-10 py-4 rounded-sm font-bold text-sm tracking-widest transition-all duration-300 shadow-[0_0_20px_-5px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.5)]">
                             <Mail className="group-hover:rotate-12 transition-transform" />
                             <span>GET IN TOUCH</span>
-                        </a>
-
-                        <a href="#" className="group flex items-center gap-2 text-ember-orange/70 hover:text-ember-orange transition-colors font-sans text-sm tracking-widest border-b border-transparent hover:border-ember-orange pb-1">
-                            <span>VIEW RESUME</span>
-                            <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
                         </a>
                     </motion.div>
                 </div>

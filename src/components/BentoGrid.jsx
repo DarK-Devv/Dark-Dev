@@ -267,9 +267,15 @@ const BentoGrid = () => {
                         INITIATE_CONTACT
                     </a>
                     <div className="flex gap-6 mt-8">
-                        <Github size={18} className="text-ember-orange/60 hover:text-ember-orange cursor-pointer transition-colors" />
-                        <Globe size={18} className="text-ember-orange/60 hover:text-ember-orange cursor-pointer transition-colors" />
-                        <Layout size={18} className="text-ember-orange/60 hover:text-ember-orange cursor-pointer transition-colors" />
+                        <a href="https://github.com/DarK-Devv" target="_blank" rel="noopener noreferrer">
+                            <Github size={18} className="text-ember-orange/60 hover:text-ember-orange cursor-pointer transition-colors" />
+                        </a>
+                        <a href="https://fhatal.com" target="_blank" rel="noopener noreferrer">
+                            <Globe size={18} className="text-ember-orange/60 hover:text-ember-orange cursor-pointer transition-colors" />
+                        </a>
+                        <a href="https://www.linkedin.com/in/veetipere/" target="_blank" rel="noopener noreferrer">
+                            <Layout size={18} className="text-ember-orange/60 hover:text-ember-orange cursor-pointer transition-colors" />
+                        </a>
                     </div>
                 </Card>
 

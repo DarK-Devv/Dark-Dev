@@ -15,6 +15,9 @@ function App() {
       setLoading(false);
     }, 2000);
 
+    // Enable smooth scrolling
+    document.documentElement.style.scrollBehavior = 'smooth';
+
     return () => clearTimeout(timer);
   }, []);
 

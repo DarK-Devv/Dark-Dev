@@ -4,7 +4,7 @@ import { useState } from 'react';
 
 const Navbar = () => {
     return (
-        <nav className="fixed top-0 w-full z-50 px-8 py-6 flex justify-between items-center backdrop-blur-sm bg-luxury-black/50 rounded-xl">
+        <nav className="absolute top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-transparent">
             <motion.div
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
