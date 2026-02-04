@@ -39,7 +39,26 @@ const Typewriter = ({ text, delay = 0 }) => {
     return <span>{displayText}</span>;
 }
 
+const FUNNY_STATUSES = [
+    "ONLINE",
+    "DEBUGGING LIFE",
+    "CAFFEINATED ☕",
+    "COMPILING...",
+    "404 SLEEP NOT FOUND",
+    "HACKING MAINFRAME",
+    "GIT PUSH --FORCE",
+    "INSTALLING BRAIN.JS",
+    "RUNNING ON COFFEE",
+    "REFACTORING REALITY",
+    "SUDO MAKE SANDWICH"
+];
+
 const Hero = () => {
+    const [status, setStatus] = useState('ONLINE');
+
+    useEffect(() => {
+        setStatus(FUNNY_STATUSES[Math.floor(Math.random() * FUNNY_STATUSES.length)]);
+    }, []);
     return (
         <section className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden py-32 md:py-40">
 
@@ -129,7 +148,7 @@ const Hero = () => {
                         >
                             <div className="flex items-center gap-3">
                                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
-                                <span className="text-xs font-mono text-ember-orange tracking-widest">ONLINE</span>
+                                <span className="text-xs font-mono text-ember-orange tracking-widest">{status}</span>
                             </div>
                         </motion.div>
                     </div>
