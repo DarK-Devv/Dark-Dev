@@ -4,7 +4,7 @@ import {
     Cpu, Github, Globe, Database, Layout, Server, Wifi
 } from 'lucide-react';
 
-const Card = ({ children, className = "", delay = 0 }) => {
+const Card = ({ children, className = "", delay = 0, id }) => {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
@@ -23,6 +23,7 @@ const Card = ({ children, className = "", delay = 0 }) => {
             onMouseMove={handleMouseMove}
             className={`group relative bg-luxury-charcoal/80 backdrop-blur-xl border border-white/5 rounded-none p-8 overflow-hidden hover:border-ember-orange/40 transition-colors duration-300 ${className}`}
             whileHover={{ y: -2 }}
+            id={id}
         >
             {/* Corner Accents (Tech Feel) */}
             <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-ember-orange/30 group-hover:border-ember-orange transition-colors"></div>
@@ -51,8 +52,8 @@ const BentoGrid = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(200px,auto)]">
 
                 {/* About - 2 Cols */}
-                <div id="about" className="md:col-span-2 contents">
-                    <Card className="md:col-span-2 flex flex-col justify-center">
+                <div className="md:col-span-2 contents">
+                    <Card id="about" className="md:col-span-2 flex flex-col justify-center">
                         <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                             <Code size={120} className="text-ember-orange" />
                         </div>

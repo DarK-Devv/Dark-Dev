@@ -79,7 +79,7 @@ const Hero = () => {
                         transition={{ delay: 0.5 }}
                         className="flex flex-col sm:flex-row gap-4"
                     >
-                        <a href="#ventures" className="group relative px-8 py-4 bg-ember-orange text-white font-bold text-lg rounded-sm overflow-hidden transition-all hover:scale-105 active:scale-95 inline-block shadow-[0_0_30px_-5px_rgba(255,107,53,0.5)] hover:shadow-[0_0_50px_-2px_rgba(255,107,53,0.8)] animate-glow">
+                        <a href="#about" className="group relative px-8 py-4 bg-ember-orange text-white font-bold text-lg rounded-sm overflow-hidden transition-all hover:scale-105 active:scale-95 inline-block shadow-[0_0_30px_-5px_rgba(255,107,53,0.5)] hover:shadow-[0_0_50px_-2px_rgba(255,107,53,0.8)] animate-glow">
                             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-ember-glow/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             <span className="relative z-10 flex items-center gap-2 justify-center tracking-wide">
                                 VIEW PROJECTS <ArrowRight size={20} />
