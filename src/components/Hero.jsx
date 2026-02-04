@@ -69,7 +69,7 @@ const Hero = () => {
                     </div>
 
                     <p className="text-gray-400 text-lg md:text-xl max-w-xl leading-relaxed mb-10 font-light">
-                        ICT Engineer & Entrepreneur crafting digital experiences with <br className="hidden md:block" />
+                        Software Engineer & Entrepreneur crafting digital experiences with <br className="hidden md:block" />
                         <span className="text-white font-medium">precision</span>, <span className="text-white font-medium">performance</span>, and <span className="text-ember-orange font-medium">style</span>.
                     </p>
 
