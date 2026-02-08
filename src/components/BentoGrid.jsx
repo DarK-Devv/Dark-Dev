@@ -4,7 +4,7 @@ import {
     Cpu, Github, Globe, Database, Layout, Server, Wifi
 } from 'lucide-react';
 
-const Card = ({ children, className = "", delay = 0 }) => {
+const Card = ({ children, className = "", delay = 0, id }) => {
     const mouseX = useMotionValue(0);
     const mouseY = useMotionValue(0);
 
@@ -23,6 +23,7 @@ const Card = ({ children, className = "", delay = 0 }) => {
             onMouseMove={handleMouseMove}
             className={`group relative bg-luxury-charcoal/80 backdrop-blur-xl border border-white/5 rounded-none p-8 overflow-hidden hover:border-ember-orange/40 transition-colors duration-300 ${className}`}
             whileHover={{ y: -2 }}
+            id={id}
         >
             {/* Corner Accents (Tech Feel) */}
             <div className="absolute top-0 left-0 w-2 h-2 border-t-2 border-l-2 border-ember-orange/30 group-hover:border-ember-orange transition-colors"></div>
@@ -51,8 +52,8 @@ const BentoGrid = () => {
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 auto-rows-[minmax(200px,auto)]">
 
                 {/* About - 2 Cols */}
-                <div id="about" className="md:col-span-2 contents">
-                    <Card className="md:col-span-2 flex flex-col justify-center">
+                <div className="md:col-span-2 contents">
+                    <Card id="about" className="md:col-span-2 flex flex-col justify-center">
                         <div className="absolute top-0 right-0 p-8 opacity-10 group-hover:opacity-20 transition-opacity">
                             <Code size={120} className="text-ember-orange" />
                         </div>
@@ -88,7 +89,7 @@ const BentoGrid = () => {
                                     <span className="text-ember-orange">💼</span> <span className="text-stone-400">4 years at</span> <span className="text-white font-bold">Euroclear</span>
                                 </div>
                                 <div className="bg-black/30 p-3 border border-white/5 rounded-sm">
-                                    <span className="text-ember-orange">🎓</span> <span className="text-stone-400">ICT Engineering</span> <span className="text-white">Specialist</span>
+                                    <span className="text-ember-orange">🎓</span> <span className="text-stone-400">Software</span> <span className="text-white">Engineer</span>
                                 </div>
                                 <div className="bg-black/30 p-3 border border-white/5 rounded-sm">
                                     <span className="text-ember-orange">🚀</span> <span className="text-stone-400">Co-Founder</span> <span className="text-white font-bold">FHATAL</span>
@@ -114,7 +115,7 @@ const BentoGrid = () => {
                             <div>
                                 <p className="text-[10px] font-mono uppercase tracking-widest text-ember-orange/60 mb-3">&gt; FRONTEND</p>
                                 <div className="flex flex-wrap gap-2">
-                                    {['React', 'TypeScript', 'Tailwind', 'Three.js', 'Framer'].map((tech) => (
+                                    {['HTML', 'CSS', 'JavaScript', 'React', 'Next.js', 'Vite', 'TypeScript', 'Tailwind', 'Three.js', 'Framer'].map((tech) => (
                                         <span key={tech} className="px-2 py-1 bg-white/5 text-[10px] font-mono text-stone-300 border-l-2 border-ember-orange/20 hover:border-ember-orange transition-colors duration-300">
                                             {tech}
                                         </span>
@@ -126,7 +127,7 @@ const BentoGrid = () => {
                             <div>
                                 <p className="text-[10px] font-mono uppercase tracking-widest text-ember-orange/60 mb-3">&gt; BACKEND</p>
                                 <div className="flex flex-wrap gap-2">
-                                    {['Node.js', 'Java', 'Python', 'PostgreSQL', 'MongoDB'].map((tech) => (
+                                    {['SQL', 'REST API', 'Node.js', 'Express', 'Java', 'Python', 'PostgreSQL', 'Firebase', 'MongoDB'].map((tech) => (
                                         <span key={tech} className="px-2 py-1 bg-white/5 text-[10px] font-mono text-stone-300 border-l-2 border-ember-orange/20 hover:border-ember-orange transition-colors duration-300">
                                             {tech}
                                         </span>
@@ -138,7 +139,7 @@ const BentoGrid = () => {
                             <div>
                                 <p className="text-[10px] font-mono uppercase tracking-widest text-ember-orange/60 mb-3">&gt; DEVOPS</p>
                                 <div className="flex flex-wrap gap-2">
-                                    {['Docker', 'AWS', 'Vercel', 'Git'].map((tech) => (
+                                    {['Docker', 'AWS', 'Linux', 'Nginx', 'Vercel', 'Git'].map((tech) => (
                                         <span key={tech} className="px-2 py-1 bg-white/5 text-[10px] font-mono text-stone-300 border-l-2 border-ember-orange/20 hover:border-ember-orange transition-colors duration-300">
                                             {tech}
                                         </span>

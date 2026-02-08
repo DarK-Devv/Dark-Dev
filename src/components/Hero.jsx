@@ -39,7 +39,26 @@ const Typewriter = ({ text, delay = 0 }) => {
     return <span>{displayText}</span>;
 }
 
+const FUNNY_STATUSES = [
+    "ONLINE",
+    "DEBUGGING LIFE",
+    "CAFFEINATED ☕",
+    "COMPILING...",
+    "404 SLEEP NOT FOUND",
+    "HACKING MAINFRAME",
+    "GIT PUSH --FORCE",
+    "INSTALLING BRAIN.JS",
+    "RUNNING ON COFFEE",
+    "REFACTORING REALITY",
+    "SUDO MAKE SANDWICH"
+];
+
 const Hero = () => {
+    const [status, setStatus] = useState('ONLINE');
+
+    useEffect(() => {
+        setStatus(FUNNY_STATUSES[Math.floor(Math.random() * FUNNY_STATUSES.length)]);
+    }, []);
     return (
         <section className="relative min-h-screen w-full flex flex-col justify-center items-center overflow-hidden py-32 md:py-40">
 
@@ -69,7 +88,7 @@ const Hero = () => {
                     </div>
 
                     <p className="text-gray-400 text-lg md:text-xl max-w-xl leading-relaxed mb-10 font-light">
-                        ICT Engineer & Entrepreneur crafting digital experiences with <br className="hidden md:block" />
+                        Software Engineer & Entrepreneur crafting digital experiences with <br className="hidden md:block" />
                         <span className="text-white font-medium">precision</span>, <span className="text-white font-medium">performance</span>, and <span className="text-ember-orange font-medium">style</span>.
                     </p>
 
@@ -79,7 +98,7 @@ const Hero = () => {
                         transition={{ delay: 0.5 }}
                         className="flex flex-col sm:flex-row gap-4"
                     >
-                        <a href="#ventures" className="group relative px-8 py-4 bg-ember-orange text-white font-bold text-lg rounded-sm overflow-hidden transition-all hover:scale-105 active:scale-95 inline-block shadow-[0_0_30px_-5px_rgba(255,107,53,0.5)] hover:shadow-[0_0_50px_-2px_rgba(255,107,53,0.8)] animate-glow">
+                        <a href="#about" className="group relative px-8 py-4 bg-ember-orange text-white font-bold text-lg rounded-sm overflow-hidden transition-all hover:scale-105 active:scale-95 inline-block shadow-[0_0_30px_-5px_rgba(255,107,53,0.5)] hover:shadow-[0_0_50px_-2px_rgba(255,107,53,0.8)] animate-glow">
                             <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-ember-glow/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
                             <span className="relative z-10 flex items-center gap-2 justify-center tracking-wide">
                                 VIEW PROJECTS <ArrowRight size={20} />
@@ -129,7 +148,7 @@ const Hero = () => {
                         >
                             <div className="flex items-center gap-3">
                                 <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse shadow-[0_0_10px_rgba(34,197,94,0.5)]"></div>
-                                <span className="text-xs font-mono text-ember-orange tracking-widest">ONLINE</span>
+                                <span className="text-xs font-mono text-ember-orange tracking-widest">{status}</span>
                             </div>
                         </motion.div>
                     </div>

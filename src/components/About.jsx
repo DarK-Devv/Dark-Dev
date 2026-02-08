@@ -16,7 +16,7 @@ const About = () => {
         {
             icon: <Code className="w-8 h-8 text-brand-purple" />,
             title: "Software Engineering",
-            desc: "Graduated ICT Engineer specializing in modern software solutions."
+            desc: "Graduated Software Engineer specializing in modern software solutions."
         },
         {
             icon: <Terminal className="w-8 h-8 text-brand-cyan" />,
@@ -70,7 +70,7 @@ const About = () => {
                     <div className="bg-dark-200/80 backdrop-blur-xl p-8 rounded-xl">
                         <p className="text-lg md:text-xl text-gray-300 leading-relaxed text-center font-light">
                             "I'm <span className="text-white font-bold">Veeti Pere</span> (aka DarK-Devs), a goal-driven ICT Engineer with a passion for modern, innovative solutions.
-                            For the past four years, I've worked as a Service Desk Specialist at Euroclear, refining my skills in problem-solving
+                            For the past three years, I've worked as a Service Desk Specialist at Euroclear, refining my skills in problem-solving
                             and professionalism. I’m also the co-founder of <span className="text-brand-cyan">FHATAL</span>, helping startups get digital tools fast."
                         </p>
                     </div>
