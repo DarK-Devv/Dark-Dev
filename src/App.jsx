@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 3400);
+    }, 3200);
 
     // Enable smooth scrolling
     document.documentElement.style.scrollBehavior = 'smooth';

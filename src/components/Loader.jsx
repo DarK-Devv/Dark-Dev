@@ -1,153 +1,240 @@
 import { useEffect, useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 
-const D_PATH = "M 22,10 L 22,90 L 50,90 C 82,90 90,73 90,50 C 90,27 82,10 50,10 Z";
+const ARC_R = 155;
+const ARC_CIRC = 2 * Math.PI * ARC_R;
 
 const Loader = () => {
     const [phase, setPhase] = useState(0);
-
-    const particles = useMemo(() =>
-        Array.from({ length: 28 }, (_, i) => {
-            const angle = (i / 28) * Math.PI * 2 + (Math.random() * 0.3 - 0.15);
-            const dist = 55 + Math.random() * 70;
-            return {
-                id: i,
-                x: Math.cos(angle) * dist,
-                y: Math.sin(angle) * dist,
-                size: 1.5 + Math.random() * 3.5,
-                color: i % 3 === 0 ? '#FFB627' : i % 3 === 1 ? '#FF6B35' : '#ffffff',
-                duration: 0.5 + Math.random() * 0.5,
-            };
-        }), []
-    );
+    const [counter, setCounter] = useState(0);
 
     useEffect(() => {
-        const t1 = setTimeout(() => setPhase(1), 1300);
-        const t2 = setTimeout(() => setPhase(2), 1900);
-        return () => { clearTimeout(t1); clearTimeout(t2); };
+        const t1 = setTimeout(() => setPhase(1), 150);
+        const t2 = setTimeout(() => setPhase(2), 1700);
+        const t3 = setTimeout(() => setPhase(3), 2500);
+        return () => { clearTimeout(t1); clearTimeout(t2); clearTimeout(t3); };
     }, []);
+
+    useEffect(() => {
+        let n = 0;
+        const id = setInterval(() => {
+            n++;
+            setCounter(n);
+            if (n >= 100) clearInterval(id);
+        }, 32);
+        return () => clearInterval(id);
+    }, []);
+
+    const speedLines = useMemo(() =>
+        Array.from({ length: 16 }, (_, i) => ({
+            id: i,
+            angle: i * 22.5,
+            length: 140 + Math.floor(Math.random() * 100),
+            delay: (Math.random() * 0.4),
+            alpha: 0.25 + Math.random() * 0.45,
+        })), []
+    );
 
     return (
         <motion.div
             initial={{ opacity: 1 }}
-            exit={{ y: '-100%', opacity: 1 }}
-            transition={{ duration: 0.7, ease: [0.76, 0, 0.24, 1] }}
-            className="fixed inset-0 z-50 bg-[#050505] flex flex-col items-center justify-center"
+            exit={{ opacity: 0, scale: 1.06 }}
+            transition={{ duration: 0.55, ease: [0.76, 0, 0.24, 1] }}
+            className="fixed inset-0 z-50 flex items-center justify-center overflow-hidden"
+            style={{ background: '#050505' }}
         >
-            {/* Ambient background glow — blooms on burst */}
-            <motion.div
-                className="absolute inset-0 flex items-center justify-center pointer-events-none"
-                animate={phase >= 1 ? { opacity: [0, 0.7, 0.2] } : { opacity: 0 }}
-                transition={{ duration: 0.9 }}
-            >
-                <div className="w-[700px] h-[700px] rounded-full bg-ember-orange/20 blur-[130px]" />
-            </motion.div>
 
-            {/* Burst flash */}
-            {phase >= 2 && (
-                <motion.div
-                    className="absolute inset-0 bg-ember-orange/15 pointer-events-none"
-                    initial={{ opacity: 1 }}
-                    animate={{ opacity: 0 }}
-                    transition={{ duration: 0.5 }}
-                />
+            {/* ── Speed lines ── */}
+            {phase >= 1 && (
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    {speedLines.map((ln) => (
+                        <div
+                            key={ln.id}
+                            className="absolute"
+                            style={{
+                                left: '50%',
+                                top: '50%',
+                                transformOrigin: 'left center',
+                                transform: `rotate(${ln.angle}deg)`,
+                            }}
+                        >
+                            <motion.div
+                                style={{
+                                    width: ln.length,
+                                    height: 1,
+                                    background: `linear-gradient(to right, rgba(255,107,53,${ln.alpha}), transparent)`,
+                                    transformOrigin: 'left center',
+                                }}
+                                initial={{ scaleX: 0, opacity: 0 }}
+                                animate={{ scaleX: [0, 1, 0], opacity: [0, 1, 0] }}
+                                transition={{
+                                    duration: 1.0,
+                                    delay: ln.delay,
+                                    repeat: Infinity,
+                                    repeatDelay: 1.2,
+                                    ease: 'easeOut',
+                                }}
+                            />
+                        </div>
+                    ))}
+                </div>
             )}
 
-            {/* Logo container */}
-            <div className="relative flex items-center justify-center">
-
-                {/* Corner brackets draw in */}
-                {[
-                    { t: '-top-10', l: '-left-10', b: 'border-t-2 border-l-2', delay: 0.05 },
-                    { t: '-top-10', l: '-right-10', b: 'border-t-2 border-r-2', delay: 0.1 },
-                    { t: '-bottom-10', l: '-left-10', b: 'border-b-2 border-l-2', delay: 0.15 },
-                    { t: '-bottom-10', l: '-right-10', b: 'border-b-2 border-r-2', delay: 0.2 },
-                ].map((br, i) => (
+            {/* ── Orbital rings ── */}
+            {phase >= 1 && (
+                <>
+                    {/* Outer — slow clockwise */}
                     <motion.div
-                        key={i}
-                        className={`absolute ${br.t} ${br.l} w-5 h-5 ${br.b} border-ember-orange/70`}
-                        initial={{ opacity: 0, scale: 0 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.25, delay: br.delay }}
-                    />
-                ))}
+                        className="absolute rounded-full"
+                        style={{
+                            width: 290, height: 290,
+                            border: '1px solid rgba(255,107,53,0.12)',
+                        }}
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 9, repeat: Infinity, ease: 'linear' }}
+                    >
+                        <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 block w-2 h-2 rounded-full bg-ember-orange/60 shadow-[0_0_8px_#FF6B35]" />
+                        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 block w-1 h-1 rounded-full bg-ember-orange/30" />
+                    </motion.div>
 
-                {/* SVG D — draws itself */}
-                <motion.svg
-                    width="150" height="150" viewBox="0 0 112 100"
-                    animate={phase >= 1
-                        ? { filter: ['drop-shadow(0 0 25px #FF6B35)', 'drop-shadow(0 0 70px #FF6B35)', 'drop-shadow(0 0 35px #FF6B35)'] }
-                        : { filter: 'drop-shadow(0 0 12px rgba(255,107,53,0.4))' }
-                    }
-                    transition={{ duration: 0.7 }}
+                    {/* Middle — medium counter-clockwise */}
+                    <motion.div
+                        className="absolute rounded-full"
+                        style={{
+                            width: 210, height: 210,
+                            border: '1px solid rgba(255,107,53,0.22)',
+                        }}
+                        animate={{ rotate: -360 }}
+                        transition={{ duration: 5, repeat: Infinity, ease: 'linear' }}
+                    >
+                        <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 block w-1.5 h-1.5 rounded-full bg-ember-glow shadow-[0_0_6px_#FFB627]" />
+                        <span className="absolute right-0 top-1/2 translate-x-1/2 -translate-y-1/2 block w-1 h-1 rounded-full bg-ember-orange/40" />
+                    </motion.div>
+
+                    {/* Inner — fast clockwise */}
+                    <motion.div
+                        className="absolute rounded-full"
+                        style={{
+                            width: 140, height: 140,
+                            border: '1px solid rgba(255,107,53,0.35)',
+                        }}
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 2.5, repeat: Infinity, ease: 'linear' }}
+                    >
+                        <span className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 block w-2 h-2 rounded-full bg-ember-orange shadow-[0_0_10px_#FF6B35]" />
+                    </motion.div>
+                </>
+            )}
+
+            {/* ── Arc progress (SVG) ── */}
+            {phase >= 1 && (
+                <svg
+                    className="absolute"
+                    width="340" height="340"
+                    viewBox="0 0 340 340"
+                    style={{ transform: 'rotate(-90deg)' }}
                 >
-                    {/* Glow fill — appears on burst */}
-                    <motion.path
-                        d={D_PATH}
-                        fill="#FF6B35"
-                        initial={{ opacity: 0 }}
-                        animate={phase >= 1 ? { opacity: [0, 0.2, 0.12] } : { opacity: 0 }}
-                        transition={{ duration: 0.5 }}
+                    {/* Track */}
+                    <circle
+                        cx="170" cy="170" r={ARC_R}
+                        fill="none"
+                        stroke="rgba(255,107,53,0.07)"
+                        strokeWidth="1.5"
                     />
-                    {/* Animated stroke */}
-                    <motion.path
-                        d={D_PATH}
+                    {/* Fill */}
+                    <motion.circle
+                        cx="170" cy="170" r={ARC_R}
                         fill="none"
                         stroke="#FF6B35"
-                        strokeWidth="5"
+                        strokeWidth="1.5"
                         strokeLinecap="round"
-                        strokeLinejoin="round"
-                        initial={{ pathLength: 0, opacity: 1 }}
-                        animate={{ pathLength: 1, opacity: 1 }}
-                        transition={{ duration: 1.1, ease: [0.4, 0, 0.2, 1], delay: 0.15 }}
+                        strokeDasharray={ARC_CIRC}
+                        initial={{ strokeDashoffset: ARC_CIRC }}
+                        animate={{ strokeDashoffset: 0 }}
+                        transition={{ duration: 3.1, ease: [0.4, 0, 0.2, 1] }}
                     />
-                </motion.svg>
+                </svg>
+            )}
 
-                {/* Particle burst */}
-                {phase >= 1 && particles.map((p) => (
-                    <motion.div
-                        key={p.id}
-                        className="absolute rounded-full pointer-events-none"
-                        style={{
-                            width: p.size,
-                            height: p.size,
-                            backgroundColor: p.color,
-                            top: '50%',
-                            left: '50%',
-                            marginTop: -p.size / 2,
-                            marginLeft: -p.size / 2,
-                            boxShadow: `0 0 ${p.size * 2}px ${p.color}`,
-                        }}
-                        initial={{ x: 0, y: 0, opacity: 1, scale: 1 }}
-                        animate={{ x: p.x, y: p.y, opacity: 0, scale: 0 }}
-                        transition={{ duration: p.duration, ease: 'easeOut' }}
-                    />
-                ))}
-            </div>
-
-            {/* Bottom scanning bar + label */}
-            <motion.div
-                className="absolute bottom-[20%] flex flex-col items-center gap-3"
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.35, duration: 0.5 }}
-            >
-                <div className="w-52 h-[1px] bg-white/5 overflow-hidden relative">
-                    <motion.div
-                        className="absolute inset-y-0 w-20 bg-gradient-to-r from-transparent via-ember-orange to-transparent"
-                        initial={{ x: '-100%' }}
-                        animate={{ x: '320%' }}
-                        transition={{ duration: 1.6, ease: 'easeInOut', delay: 0.3, repeat: Infinity, repeatDelay: 0.2 }}
-                    />
-                </div>
-                <motion.span
-                    className="text-[9px] font-mono tracking-[0.55em] text-ember-orange/35"
-                    animate={{ opacity: [0.35, 0.7, 0.35] }}
-                    transition={{ duration: 2.4, repeat: Infinity }}
+            {/* ── Logo — spring bounce ── */}
+            {phase >= 2 && (
+                <motion.div
+                    className="relative z-10 flex items-center justify-center"
+                    initial={{ scale: 0, opacity: 0 }}
+                    animate={{ scale: 1, opacity: 1 }}
+                    transition={{ type: 'spring', stiffness: 220, damping: 14 }}
                 >
-                    DARK-DEV
-                </motion.span>
-            </motion.div>
+                    <div
+                        className="absolute w-32 h-32 rounded-full blur-3xl"
+                        style={{ background: 'rgba(255,107,53,0.25)' }}
+                    />
+                    <span
+                        className="font-black leading-none select-none relative z-10"
+                        style={{
+                            fontSize: 128,
+                            color: '#FF6B35',
+                            textShadow: '0 0 50px rgba(255,107,53,0.9), 0 0 100px rgba(255,107,53,0.4)',
+                        }}
+                    >
+                        D
+                    </span>
+                </motion.div>
+            )}
+
+            {/* ── HUD corners ── */}
+            {phase >= 1 && (
+                <>
+                    <motion.div className="absolute top-8 left-8"
+                        initial={{ opacity: 0, x: -12, y: -12 }}
+                        animate={{ opacity: 1, x: 0, y: 0 }}
+                        transition={{ duration: 0.35, delay: 0.05 }}
+                    >
+                        <div className="w-10 h-10 border-t-2 border-l-2 border-ember-orange/55" />
+                        <p className="mt-2 font-mono text-[9px] tracking-widest text-ember-orange/30">SYS::INIT</p>
+                    </motion.div>
+
+                    <motion.div className="absolute top-8 right-8 flex flex-col items-end"
+                        initial={{ opacity: 0, x: 12, y: -12 }}
+                        animate={{ opacity: 1, x: 0, y: 0 }}
+                        transition={{ duration: 0.35, delay: 0.1 }}
+                    >
+                        <div className="w-10 h-10 border-t-2 border-r-2 border-ember-orange/55" />
+                        <p className="mt-2 font-mono text-[9px] tracking-widest text-ember-orange/30">DARK-DEV</p>
+                    </motion.div>
+
+                    <motion.div className="absolute bottom-8 left-8"
+                        initial={{ opacity: 0, x: -12, y: 12 }}
+                        animate={{ opacity: 1, x: 0, y: 0 }}
+                        transition={{ duration: 0.35, delay: 0.15 }}
+                    >
+                        <div className="w-10 h-10 border-b-2 border-l-2 border-ember-orange/55" />
+                    </motion.div>
+
+                    <motion.div className="absolute bottom-8 right-8 flex flex-col items-end"
+                        initial={{ opacity: 0, x: 12, y: 12 }}
+                        animate={{ opacity: 1, x: 0, y: 0 }}
+                        transition={{ duration: 0.35, delay: 0.2 }}
+                    >
+                        <div className="w-10 h-10 border-b-2 border-r-2 border-ember-orange/55" />
+                        <p className="mt-2 font-mono text-[11px] tabular-nums tracking-widest text-ember-orange/50">
+                            {String(counter).padStart(3, '0')}%
+                        </p>
+                    </motion.div>
+                </>
+            )}
+
+            {/* ── SYSTEM READY label ── */}
+            {phase >= 3 && (
+                <motion.p
+                    className="absolute bottom-[28%] font-mono text-[10px] tracking-[0.6em] text-ember-orange"
+                    initial={{ opacity: 0, y: 6 }}
+                    animate={{ opacity: [0, 1, 1, 0.6] }}
+                    transition={{ duration: 0.8, times: [0, 0.25, 0.7, 1] }}
+                >
+                    SYSTEM_READY
+                </motion.p>
+            )}
+
         </motion.div>
     );
 };
