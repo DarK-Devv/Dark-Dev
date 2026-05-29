@@ -67,7 +67,7 @@ const BentoGrid = () => {
                             <p className="text-stone-300 text-lg leading-relaxed max-w-2xl font-light font-mono">
                                 <span className="text-ember-glow">const developer</span> = <span className="text-white">"Veeti Pere"</span>;
                                 <br /><br />
-                                Hey there! 👋 I'm <span className="text-white font-semibold">Veeti Pere</span> (aka DarK-Devs), a goal-driven ICT Engineer with a passion for modern, innovative solutions.
+                                Hey there! 👋 I'm <span className="text-white font-semibold">Veeti Pere</span> (aka DarK-Devs), a goal-driven Software Engineer with a passion for modern, innovative solutions.
                                 I thrive on challenges and love pushing boundaries to create impactful digital experiences.
                             </p>
 
@@ -157,7 +157,7 @@ const BentoGrid = () => {
                             <div className="p-3 bg-ember-orange/5 text-ember-orange border border-ember-orange/20">
                                 <Building2 size={24} />
                             </div>
-                            <span className="text-[10px] font-mono tracking-widest text-ember-orange px-2 py-1 bg-ember-orange/5 border border-ember-orange/20">3 YRS</span>
+                            <span className="text-[10px] font-mono tracking-widest text-ember-orange px-2 py-1 bg-ember-orange/5 border border-ember-orange/20">4 YRS</span>
                         </div>
                         <h3 className="text-xl font-sans font-bold text-white mb-2">Service Desk <span className="text-ember-orange">Specialist</span></h3>
                         <p className="text-xs font-mono tracking-widest text-luxury-silver uppercase mb-6">Euroclear</p>
