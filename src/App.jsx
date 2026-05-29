@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 import Loader from './components/Loader';
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -10,10 +10,9 @@ function App() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Show loader for 2 seconds
     const timer = setTimeout(() => {
       setLoading(false);
-    }, 2000);
+    }, 3200);
 
     // Enable smooth scrolling
     document.documentElement.style.scrollBehavior = 'smooth';
@@ -27,7 +26,12 @@ function App() {
         {loading && <Loader key="loader" />}
       </AnimatePresence>
 
-      <div className="relative min-h-screen bg-luxury-black w-full overflow-x-hidden text-luxury-silver selection:bg-ember-orange selection:text-black">
+      <motion.div
+        initial={{ opacity: 0 }}
+        animate={{ opacity: loading ? 0 : 1 }}
+        transition={{ duration: 0.6, delay: 0.1 }}
+        className="relative min-h-screen bg-luxury-black w-full overflow-x-hidden text-luxury-silver selection:bg-ember-orange selection:text-black"
+      >
         {/* Ambient Background */}
         <div className="fixed inset-0 z-0 bg-luxury-black">
           {/* Ember Glows */}
@@ -44,7 +48,7 @@ function App() {
           <BentoGrid />
           <Contact />
         </div>
-      </div>
+      </motion.div>
     </>
   );
 }
