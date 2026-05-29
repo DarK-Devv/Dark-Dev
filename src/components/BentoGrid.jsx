@@ -186,60 +186,107 @@ const BentoGrid = () => {
                 {/* FHATAL - 3 Cols (Full Width) */}
                 <div className="md:col-span-3 contents">
                     <Card id="ventures" delay={0.3} className="md:col-span-3 bg-gradient-to-r from-ember-black via-ember-charcoal to-ember-black border-l-4 border-l-ember-orange shadow-[0_0_30px_-10px_rgba(255,107,53,0.3)] hover:shadow-[0_0_50px_-5px_rgba(255,107,53,0.5)] transition-shadow duration-500">
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                            <div>
-                                <div className="flex justify-between items-start mb-8">
-                                    <div className="p-4 bg-ember-orange/10 text-ember-orange border border-ember-orange/30 animate-ember-pulse">
-                                        <Rocket size={40} />
-                                    </div>
-                                    <a href="https://fhatal.com" target="_blank" rel="noopener noreferrer">
-                                        <ExternalLink size={20} className="text-stone-500 hover:text-ember-glow cursor-pointer transition-colors" />
-                                    </a>
-                                </div>
-                                <h3 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tighter font-sans">
-                                    FHATAL
-                                </h3>
-                                <p className="text-ember-glow font-mono text-xs tracking-widest mb-8 flex items-center gap-3 animate-flicker">
-                                    [CO-FOUNDER & TECH LEAD]
-                                </p>
+                        <div className="space-y-12">
 
-                                <div className="space-y-4 text-stone-300 font-light">
-                                    <p className="leading-relaxed text-base">
-                                        I help startups and small businesses get the digital tools they need — <span className="text-ember-orange font-medium">fast</span>,
-                                        <span className="text-ember-orange font-medium">affordable</span>, and <span className="text-ember-orange font-medium">tailored</span> to their vision.
+                            {/* Header */}
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-start">
+                                <div>
+                                    <div className="flex justify-between items-start mb-8">
+                                        <div className="p-4 bg-ember-orange/10 text-ember-orange border border-ember-orange/30 animate-ember-pulse">
+                                            <Rocket size={40} />
+                                        </div>
+                                        <a href="https://fhatal.com" target="_blank" rel="noopener noreferrer">
+                                            <ExternalLink size={20} className="text-stone-500 hover:text-ember-glow cursor-pointer transition-colors" />
+                                        </a>
+                                    </div>
+                                    <h3 className="text-4xl md:text-5xl font-black text-white mb-4 tracking-tighter font-sans">
+                                        FHATAL
+                                    </h3>
+                                    <p className="text-ember-glow font-mono text-xs tracking-widest mb-6 animate-flicker">
+                                        [CTO & CO-FOUNDER]
                                     </p>
-                                    <p className="leading-relaxed text-sm text-stone-400">
-                                        Using AI, rapid prototyping, and modern tech to make sure clients see results before they ever commit.
-                                        Every project is a chance to push boundaries and bring ideas to life.
-                                    </p>
-                                    <div className="flex flex-wrap gap-2 pt-2">
-                                        {['Web Development', 'Video Editing', 'Rapid Prototyping', 'AI Integration'].map((skill) => (
-                                            <span key={skill} className="px-3 py-1 bg-ember-orange/10 text-ember-orange text-xs font-mono border border-ember-orange/20 rounded-sm">
-                                                {skill}
-                                            </span>
+                                    <div className="space-y-3 text-stone-300 font-light">
+                                        <p className="leading-relaxed text-base">
+                                            A modern <span className="text-white font-medium">software house</span> focused on building fast, scalable, and user-centric digital solutions.
+                                        </p>
+                                        <p className="leading-relaxed text-sm text-stone-400">
+                                            Our key focus is <span className="text-ember-orange font-medium">SaaS</span> and web-based software — solutions that are accessible through the browser,
+                                            scalable over time, and easier to maintain than heavy on-premise systems.
+                                            We use a <span className="text-white font-medium">prototype-first</span> approach, turning ideas into working products quickly and improving them based on real feedback.
+                                        </p>
+                                    </div>
+                                </div>
+
+                                {/* What we build */}
+                                <div className="bg-black/40 backdrop-blur-sm p-8 border border-white/5">
+                                    <h4 className="text-sm font-bold text-white mb-5 font-mono tracking-widest">&gt; WHAT_WE_BUILD</h4>
+                                    <div className="grid grid-cols-2 gap-2">
+                                        {[
+                                            'SaaS Platforms', 'Web Applications',
+                                            'AI-Powered Tools', 'Automation Solutions',
+                                            'Responsive Websites', 'Digital Workflows',
+                                            'Brand Experiences', 'Cloud Services',
+                                        ].map((item) => (
+                                            <div key={item} className="flex items-center gap-2 text-xs font-mono text-stone-400">
+                                                <span className="text-ember-orange shrink-0">::</span>
+                                                {item}
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
                             </div>
 
-                            <div className="bg-black/40 backdrop-blur-sm p-8 border border-white/5 relative overflow-hidden">
-                                <h4 className="text-lg font-bold text-white mb-6 font-mono">&gt; WHY_FHATAL?</h4>
-                                <ul className="space-y-4">
+                            {/* Services grid */}
+                            <div>
+                                <p className="text-[10px] font-mono uppercase tracking-widest text-ember-orange/60 mb-6">&gt; OUR_SERVICES</p>
+                                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
                                     {[
-                                        { title: "See Before You Commit", desc: "Results first, commitment later." },
-                                        { title: "Modern Technology", desc: "AI-powered, rapid development." },
-                                        { title: "Tailored Solutions", desc: "Your vision, our execution." }
-                                    ].map((item, i) => (
-                                        <li key={i} className="flex gap-4 items-start">
-                                            <span className="text-ember-orange mt-1">::</span>
-                                            <div>
-                                                <div className="text-white font-bold text-sm mb-1 font-sans">{item.title}</div>
-                                                <div className="text-stone-500 text-xs font-mono">{item.desc}</div>
+                                        {
+                                            title: 'Web Applications',
+                                            desc: 'Modern, scalable apps built with Next.js, React, and Node.js. Fast, secure, and easy to use.',
+                                            tags: ['Next.js & React', 'API integrations', 'Secure'],
+                                        },
+                                        {
+                                            title: 'AI Solutions',
+                                            desc: 'AI integrations, machine learning, and intelligent automations that give you a competitive edge.',
+                                            tags: ['AI integrations', 'Process automation', 'Data analysis'],
+                                        },
+                                        {
+                                            title: 'UX/UI Design',
+                                            desc: 'User-centric design at the core of everything — intuitive experiences that work on all devices.',
+                                            tags: ['Prototypes', 'Design Systems', 'Accessibility'],
+                                        },
+                                        {
+                                            title: 'Brand Identity',
+                                            desc: 'A strong visual identity sets you apart. From logos to websites, a unified brand.',
+                                            tags: ['Logo design', 'Visual identity', 'Brand guides'],
+                                        },
+                                        {
+                                            title: 'Analytics & SEO',
+                                            desc: 'Improve visibility on search engines and track success with analytics tools.',
+                                            tags: ['SEO', 'Google Analytics', 'Performance'],
+                                        },
+                                        {
+                                            title: 'Cloud Services',
+                                            desc: 'Deployment and scalability on AWS, Vercel, and Azure with CI/CD pipelines.',
+                                            tags: ['CI/CD', 'Scalability', 'Hosting'],
+                                        },
+                                    ].map((s) => (
+                                        <div key={s.title} className="bg-black/30 border border-white/5 p-5 hover:border-ember-orange/20 transition-colors duration-300">
+                                            <h5 className="text-white font-bold text-sm mb-2 font-sans">{s.title}</h5>
+                                            <p className="text-stone-500 text-xs leading-relaxed font-light mb-3">{s.desc}</p>
+                                            <div className="flex flex-wrap gap-1">
+                                                {s.tags.map((t) => (
+                                                    <span key={t} className="px-2 py-0.5 bg-ember-orange/5 text-ember-orange/70 text-[10px] font-mono border border-ember-orange/10">
+                                                        {t}
+                                                    </span>
+                                                ))}
                                             </div>
-                                        </li>
+                                        </div>
                                     ))}
-                                </ul>
+                                </div>
                             </div>
+
                         </div>
                     </Card>
                 </div>
