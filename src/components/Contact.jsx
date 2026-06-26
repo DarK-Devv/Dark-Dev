@@ -83,7 +83,7 @@ export default function Contact() {
           &copy; {new Date().getFullYear()} Veeti Pere / Dark-Dev
         </p>
         <p className="font-mono text-[11px] uppercase tracking-widest text-stone-600">
-          built in the runtime — react · gsap · lenis
+          built in the runtime · react · gsap · lenis
         </p>
       </footer>
     </section>

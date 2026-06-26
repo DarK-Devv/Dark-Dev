@@ -16,8 +16,8 @@ const BUILD = [
 const SERVICES = [
   { t: 'Web Applications', d: 'Modern, scalable apps with Next.js, React & Node.js. Fast, secure, easy to use.', tags: ['Next.js & React', 'API integrations', 'Secure'] },
   { t: 'AI Solutions', d: 'AI integrations, ML, and intelligent automation that give you a competitive edge.', tags: ['AI integrations', 'Automation', 'Data analysis'] },
-  { t: 'UX/UI Design', d: 'User-centric design at the core — intuitive experiences that work on every device.', tags: ['Prototypes', 'Design systems', 'Accessibility'] },
-  { t: 'Brand Identity', d: 'A strong visual identity sets you apart — from logos to a unified brand system.', tags: ['Logo design', 'Visual identity', 'Brand guides'] },
+  { t: 'UX/UI Design', d: 'User-centric design at the core. Intuitive experiences that work on every device.', tags: ['Prototypes', 'Design systems', 'Accessibility'] },
+  { t: 'Brand Identity', d: 'A strong visual identity sets you apart, from logos to a unified brand system.', tags: ['Logo design', 'Visual identity', 'Brand guides'] },
   { t: 'Analytics & SEO', d: 'Improve search visibility and track success with real analytics.', tags: ['SEO', 'Analytics', 'Performance'] },
   { t: 'Cloud Services', d: 'Deployment and scale on AWS, Vercel & Azure with CI/CD pipelines.', tags: ['CI/CD', 'Scalability', 'Hosting'] },
 ];
@@ -66,7 +66,7 @@ export default function Fhatal() {
               [ CTO &amp; CO-FOUNDER ]
             </p>
             <p className="text-stone-300 leading-relaxed">
-              Our focus is <span className="text-ember-orange font-medium">SaaS</span> and web-based software —
+              Our focus is <span className="text-ember-orange font-medium">SaaS</span> and web-based software:
               accessible in the browser, scalable over time, and easier to maintain than heavy on-prem systems. We use a{' '}
               <span className="text-white font-medium">prototype-first</span> approach: ideas become working products
               fast, then improve on real feedback.

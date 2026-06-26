@@ -53,7 +53,7 @@ export default function Hero({ ready }) {
 
       // decode the eyebrows
       scramble(eyebrowL.current, 'VEETI PERE // DARK-DEV', { duration: 1100, delay: 300 });
-      scramble(eyebrowR.current, 'AVAILABLE — 2026 · FINLAND / REMOTE', { duration: 1300, delay: 500 });
+      scramble(eyebrowR.current, 'AVAILABLE · 2026 · FINLAND / REMOTE', { duration: 1300, delay: 500 });
 
       // parallax on scroll
       gsap.to('.hero__name', {
@@ -76,7 +76,7 @@ export default function Hero({ ready }) {
 
       <div className="hero__top section-pad">
         <span className="eyebrow" ref={eyebrowL}>VEETI PERE // DARK-DEV</span>
-        <span className="eyebrow hero__top-r" ref={eyebrowR}>AVAILABLE — 2026 · FINLAND / REMOTE</span>
+        <span className="eyebrow hero__top-r" ref={eyebrowR}>AVAILABLE · 2026 · FINLAND / REMOTE</span>
       </div>
 
       <div className="hero__main section-pad">
@@ -90,7 +90,7 @@ export default function Hero({ ready }) {
             Software Engineer <span className="hero__amp">&amp;</span> Entrepreneur
           </div>
           <p className="hero__desc hero__reveal">
-            I build fast, scalable digital products — crafted with{' '}
+            I build fast, scalable digital products, crafted with{' '}
             <span className="hero__hl">precision</span>, <span className="hero__hl">performance</span>, and{' '}
             <span className="hero__hl ember">style</span>. CTO &amp; co-founder of FHATAL.
           </p>
