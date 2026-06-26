@@ -36,9 +36,9 @@ export default {
                 }
             },
             fontFamily: {
-                sans: ['Inter', 'sans-serif'],
-                display: ['Space Grotesk', 'Inter', 'sans-serif'],
-                mono: ['JetBrains Mono', 'ui-monospace', 'monospace'],
+                sans: ['Inter', 'Inter Fallback', 'sans-serif'],
+                display: ['Space Grotesk', 'Space Grotesk Fallback', 'Inter', 'Inter Fallback', 'sans-serif'],
+                mono: ['JetBrains Mono', 'JetBrains Mono Fallback', 'ui-monospace', 'monospace'],
                 serif: ['Playfair Display', 'serif'],
             },
             animation: {

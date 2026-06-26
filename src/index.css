@@ -3,6 +3,38 @@
 @tailwind utilities;
 
 /* ============================================================
+   Metric-matched fallbacks (zero-CLS web-font swap)
+   Each fallback uses a local system face with size-adjust +
+   vertical overrides tuned so its box matches the webfont's.
+   When the real font swaps in, nothing reflows. Values were
+   measured against the loaded webfonts, not guessed.
+   ============================================================ */
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial');
+  size-adjust: 107.12%;
+  ascent-override: 90%;
+  descent-override: 22.43%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'Space Grotesk Fallback';
+  src: local('Arial');
+  size-adjust: 109.85%;
+  ascent-override: 86%;
+  descent-override: 23%;
+  line-gap-override: 0%;
+}
+@font-face {
+  font-family: 'JetBrains Mono Fallback';
+  src: local('Courier New');
+  size-adjust: 99.98%;
+  ascent-override: 78%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+/* ============================================================
    DARK-DEV / "RUNTIME" design system
    Near-black canvas, ember accent, technical monospace HUD.
    ============================================================ */
@@ -73,7 +105,7 @@ html.lenis body {
 
 /* ---- Shared helpers ---- */
 .eyebrow {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
@@ -81,7 +113,7 @@ html.lenis body {
 }
 
 .tc {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.04em;
 }
