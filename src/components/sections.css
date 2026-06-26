@@ -21,13 +21,13 @@
   min-width: 0;
 }
 .sec__index {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
   font-size: 13px;
   color: var(--ember);
   letter-spacing: 0.1em;
 }
 .sec__title {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   font-weight: 700;
   font-size: clamp(34px, 6vw, 84px);
   line-height: 0.92;

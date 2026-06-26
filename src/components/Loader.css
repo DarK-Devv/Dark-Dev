@@ -30,7 +30,7 @@
   align-items: center;
 }
 .boot__brand {
-  font-family: 'Space Grotesk', sans-serif;
+  font-family: 'Space Grotesk', 'Space Grotesk Fallback', sans-serif;
   font-weight: 700;
   letter-spacing: 0.04em;
   font-size: clamp(14px, 1.4vw, 18px);

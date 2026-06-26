@@ -50,7 +50,7 @@
 }
 
 .about__chip {
-  font-family: 'JetBrains Mono', monospace;
+  font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
   font-size: 12px;
   color: #e7e5e4;
   padding: 7px 12px;
