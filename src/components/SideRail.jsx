@@ -22,10 +22,13 @@ export default function SideRail({ sections, ready }) {
   useEffect(() => {
     if (!ready) return;
     function build() {
+      // Activate a section when its top crosses the viewport center, not the
+      // very top — otherwise the last (short) section never reaches the top of
+      // the viewport and never becomes active.
       starts.current = sections.map((s) => {
         const el = document.getElementById(s.id);
         if (!el) return 0;
-        const st = ScrollTrigger.create({ trigger: el, start: 'top top' });
+        const st = ScrollTrigger.create({ trigger: el, start: 'top center' });
         const v = st.start;
         st.kill();
         return v;
