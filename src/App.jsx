@@ -12,6 +12,7 @@ import Experience from './components/Experience';
 import Fhatal from './components/Fhatal';
 import Contact from './components/Contact';
 import SideRail from './components/SideRail';
+import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { setLenis, getLenis } from './lib/lenis';
 import './components/sections.css';
@@ -110,6 +111,8 @@ function App() {
 
         <SideRail sections={SECTIONS} ready={loaded} />
       </div>
+
+      <SpeedInsights />
     </>
   );
 }
