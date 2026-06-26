@@ -1,65 +1,91 @@
-import { motion } from 'framer-motion';
-import { Mail, ArrowRight } from 'lucide-react';
+import { useRef } from 'react';
+import { Mail, Github, Globe, Linkedin } from 'lucide-react';
+import { useReveal } from '../lib/useReveal';
 
-const Contact = () => {
-    // Email obfuscation - stores email in reverse to prevent scraping
-    const getEmail = () => {
-        const encoded = 'moc.liamg@erep.iteev';
-        return encoded.split('').reverse().join('');
-    };
+const getEmail = () => 'moc.liamg@erep.iteev'.split('').reverse().join('');
 
-    const handleEmailClick = (e) => {
-        e.preventDefault();
-        window.location.href = `mailto:${getEmail()}`;
-    };
+const SOCIALS = [
+  { icon: Github, href: 'https://github.com/DarK-Devv', label: 'GitHub' },
+  { icon: Globe, href: 'https://fhatal.com', label: 'FHATAL' },
+  { icon: Linkedin, href: 'https://www.linkedin.com/in/veetipere/', label: 'LinkedIn' },
+];
 
-    return (
-        <section id="contact" className="py-24 bg-luxury-black relative overflow-hidden">
-            {/* Background Decor */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-ember-orange/5 to-transparent pointer-events-none"></div>
+export default function Contact() {
+  const ref = useRef(null);
+  useReveal(ref);
 
-            <div className="container mx-auto px-6 relative z-10">
-                <div className="max-w-4xl mx-auto text-center">
-                    <motion.h2
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        className="text-5xl md:text-6xl font-serif font-bold mb-8 text-white"
-                    >
-                        Let's <span className="text-transparent bg-clip-text bg-gradient-to-r from-ember-orange via-ember-glow to-ember-core">Connect</span>
-                    </motion.h2>
+  const onEmail = (e) => {
+    e.preventDefault();
+    window.location.href = `mailto:${getEmail()}`;
+  };
 
-                    <motion.p
-                        initial={{ opacity: 0, y: 20 }}
-                        whileInView={{ opacity: 1, y: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.1 }}
-                        className="text-xl text-stone-400 mb-12 font-light max-w-2xl mx-auto"
-                    >
-                        Looking for a proactive, tech-savvy professional with a keen eye for innovation?
-                        I'm always ready to tackle new challenges.
-                    </motion.p>
+  return (
+    <section className="sec section-pad" id="contact" data-section ref={ref}>
+      <div className="sec__head">
+        <div className="sec__head-l">
+          <span className="sec__index" data-reveal>
+            05
+          </span>
+          <h2 className="sec__title" data-reveal>
+            LET'S <em>CONNECT</em>
+          </h2>
+        </div>
+        <p className="sec__note" data-reveal>
+          Looking for a proactive, tech-savvy engineer who ships? I'm always ready for the next challenge.
+        </p>
+      </div>
 
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.2 }}
-                        className="flex flex-col md:flex-row items-center justify-center gap-8"
-                    >
-                        <a href="#" onClick={handleEmailClick} className="group flex items-center gap-3 bg-ember-orange hover:bg-white text-black px-10 py-4 rounded-sm font-bold text-sm tracking-widest transition-all duration-300 shadow-[0_0_20px_-5px_rgba(212,175,55,0.3)] hover:shadow-[0_0_30px_-5px_rgba(255,255,255,0.5)]">
-                            <Mail className="group-hover:rotate-12 transition-transform" />
-                            <span>GET IN TOUCH</span>
-                        </a>
-                    </motion.div>
-                </div>
-            </div>
+      <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_1fr] gap-6">
+        <div className="tcard flex flex-col justify-between gap-10" data-reveal>
+          <span className="tcard__corner tl" />
+          <span className="tcard__corner br" />
+          <p className="font-display font-bold text-3xl md:text-5xl text-white leading-tight tracking-tight">
+            Let's build something <span className="text-ember-orange">worth shipping.</span>
+          </p>
+          <a
+            href="#"
+            onClick={onEmail}
+            className="group inline-flex items-center gap-3 self-start bg-ember-orange hover:bg-white text-black px-8 py-4 font-mono text-xs font-bold tracking-widest transition-colors duration-300"
+          >
+            <Mail size={18} className="group-hover:rotate-12 transition-transform" />
+            GET IN TOUCH
+          </a>
+        </div>
 
-            <footer className="mt-24 border-t border-ember-orange/10 py-8 text-center text-stone-500 text-xs font-mono uppercase tracking-widest">
-                <p>&copy; {new Date().getFullYear()} Veeti Pere / Dark-Dev. All rights reserved.</p>
-            </footer>
-        </section>
-    );
-};
+        <div className="tcard flex flex-col justify-center gap-1" data-reveal>
+          <span className="tcard__corner tl" />
+          <p className="font-mono text-[10px] uppercase tracking-widest text-ember-orange/60 mb-4">&gt; links</p>
+          {SOCIALS.map((s) => {
+            const Icon = s.icon;
+            return (
+              <a
+                key={s.label}
+                href={s.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center justify-between gap-4 py-4 border-b border-white/5 last:border-0 hover:px-2 transition-all duration-300"
+              >
+                <span className="flex items-center gap-3">
+                  <Icon size={18} className="text-ember-orange/60 group-hover:text-ember-orange transition-colors" />
+                  <span className="font-mono text-sm text-stone-300 group-hover:text-white transition-colors">
+                    {s.label}
+                  </span>
+                </span>
+                <span className="font-mono text-ember-orange/40 group-hover:text-ember-orange transition-colors">↗</span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
 
-export default Contact;
+      <footer className="mt-20 pt-8 pb-[calc(var(--rail-h)+24px)] border-t border-ember-orange/10 flex flex-col md:flex-row items-center justify-between gap-4 text-center">
+        <p className="font-mono text-[11px] uppercase tracking-widest text-stone-500">
+          &copy; {new Date().getFullYear()} Veeti Pere / Dark-Dev
+        </p>
+        <p className="font-mono text-[11px] uppercase tracking-widest text-stone-600">
+          built in the runtime — react · gsap · lenis
+        </p>
+      </footer>
+    </section>
+  );
+}

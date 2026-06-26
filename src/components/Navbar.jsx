@@ -1,19 +1,44 @@
-import { motion } from 'framer-motion';
-import { Menu, X } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { getLenis } from '../lib/lenis';
+import './Navbar.css';
 
-const Navbar = () => {
-    return (
-        <nav className="absolute top-0 w-full z-50 px-8 py-6 flex justify-between items-center bg-transparent">
-            <motion.div
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                className="text-2xl font-serif font-bold text-white"
-            >
-                Dark<span className="text-ember-orange italic">-Dev</span>
-            </motion.div>
-        </nav>
-    );
-};
+gsap.registerPlugin(ScrollTrigger);
 
-export default Navbar;
+export default function Navbar({ ready }) {
+  const ref = useRef(null);
+
+  useEffect(() => {
+    if (!ready || !ref.current) return;
+    const ctx = gsap.context(() => {
+      // hidden over the hero, slides in once you start executing
+      gsap.set(ref.current, { yPercent: -120 });
+      ScrollTrigger.create({
+        start: 'top -120',
+        end: 'max',
+        onToggle: (self) =>
+          gsap.to(ref.current, { yPercent: self.isActive ? 0 : -120, duration: 0.45, ease: 'power3.out' }),
+      });
+    }, ref);
+    return () => ctx.revert();
+  }, [ready]);
+
+  const toContact = () => {
+    const el = document.getElementById('contact');
+    const lenis = getLenis();
+    if (el && lenis) lenis.scrollTo(el, { duration: 1.1 });
+    else el?.scrollIntoView({ behavior: 'smooth' });
+  };
+
+  return (
+    <nav className="nav" ref={ref}>
+      <div className="nav__brand">
+        Dark<span>-Dev</span>
+      </div>
+      <button className="nav__cta" onClick={toContact}>
+        INITIATE_CONTACT
+      </button>
+    </nav>
+  );
+}
