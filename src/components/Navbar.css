@@ -1,0 +1,41 @@
+.nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 80;
+  height: 56px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 var(--gut);
+  background: rgba(5, 5, 5, 0.78);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--line);
+  will-change: transform;
+}
+.nav__brand {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: 18px;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+.nav__brand span {
+  color: var(--ember);
+  font-style: italic;
+}
+.nav__cta {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.16em;
+  color: var(--ember);
+  border: 1px solid var(--line-strong);
+  padding: 8px 16px;
+  transition: background 0.25s, color 0.25s;
+}
+.nav__cta:hover {
+  background: var(--ember);
+  color: #000;
+}

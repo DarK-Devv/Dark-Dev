@@ -1,0 +1,78 @@
+/* Shared section chrome for the RUNTIME layout */
+.sec {
+  position: relative;
+  padding-top: clamp(90px, 14vh, 180px);
+  padding-bottom: clamp(90px, 14vh, 180px);
+  border-top: 1px solid var(--line);
+}
+
+.sec__head {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  margin-bottom: clamp(40px, 6vw, 80px);
+  flex-wrap: wrap;
+}
+.sec__head-l {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  min-width: 0;
+}
+.sec__index {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  color: var(--ember);
+  letter-spacing: 0.1em;
+}
+.sec__title {
+  font-family: 'Space Grotesk', sans-serif;
+  font-weight: 700;
+  font-size: clamp(34px, 6vw, 84px);
+  line-height: 0.92;
+  letter-spacing: -0.03em;
+  text-transform: uppercase;
+  color: #fff;
+}
+.sec__title em {
+  font-style: normal;
+  color: var(--ember);
+}
+.sec__note {
+  max-width: 38ch;
+  font-size: 14px;
+  line-height: 1.55;
+  color: rgba(192, 192, 192, 0.65);
+}
+
+/* generic tech card */
+.tcard {
+  position: relative;
+  background: rgba(12, 10, 9, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: clamp(20px, 2.4vw, 34px);
+  transition: border-color 0.3s, transform 0.3s var(--ease);
+  overflow: hidden;
+}
+.tcard:hover {
+  border-color: var(--line-strong);
+  transform: translateY(-3px);
+}
+.tcard__corner {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+}
+.tcard__corner.tl {
+  top: 0;
+  left: 0;
+  border-top: 2px solid var(--line-strong);
+  border-left: 2px solid var(--line-strong);
+}
+.tcard__corner.br {
+  bottom: 0;
+  right: 0;
+  border-bottom: 2px solid var(--line-strong);
+  border-right: 2px solid var(--line-strong);
+}

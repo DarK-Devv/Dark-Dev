@@ -1,0 +1,130 @@
+/* ---- left vertical nav rail ---- */
+.rail {
+  position: fixed;
+  left: clamp(14px, 2.4vw, 34px);
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 80;
+  display: flex;
+  align-items: stretch;
+  gap: 14px;
+}
+.rail__track {
+  position: relative;
+  width: 1px;
+  background: rgba(255, 107, 53, 0.18);
+}
+.rail__fill {
+  position: absolute;
+  inset: 0;
+  background: var(--ember);
+  box-shadow: 0 0 8px rgba(255, 107, 53, 0.8);
+  transform: scaleY(0);
+  transform-origin: top center;
+}
+.rail__list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: clamp(16px, 3.4vh, 34px);
+  margin: 0;
+  padding: 0;
+}
+.rail__node {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 0;
+}
+.rail__dot {
+  width: 9px;
+  height: 9px;
+  border: 1px solid rgba(255, 107, 53, 0.4);
+  border-radius: 50%;
+  flex: 0 0 auto;
+  transition: all 0.3s var(--ease);
+}
+.rail__label {
+  font-size: 10px;
+  letter-spacing: 0.18em;
+  color: rgba(255, 255, 255, 0.4);
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: all 0.3s var(--ease);
+}
+.rail__node:hover .rail__label {
+  opacity: 1;
+  transform: translateX(0);
+  color: #fff;
+}
+.rail__node.is-active .rail__dot {
+  background: var(--ember);
+  border-color: var(--ember);
+  box-shadow: 0 0 12px rgba(255, 107, 53, 0.9);
+  transform: scale(1.25);
+}
+.rail__node.is-active .rail__label {
+  opacity: 1;
+  transform: translateX(0);
+  color: var(--ember);
+}
+
+/* ---- corner telemetry HUD ---- */
+.tele {
+  position: fixed;
+  right: clamp(14px, 2.4vw, 34px);
+  bottom: clamp(14px, 2.4vw, 28px);
+  z-index: 80;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 8px 14px;
+  background: rgba(5, 5, 5, 0.7);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--line);
+  font-size: 10px;
+  letter-spacing: 0.1em;
+}
+.tele__dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--ember);
+  box-shadow: 0 0 8px rgba(255, 107, 53, 0.9);
+  animation: blink 1.4s ease-in-out infinite;
+}
+.tele__k {
+  color: rgba(255, 255, 255, 0.45);
+}
+.tele__bar {
+  position: relative;
+  width: 64px;
+  height: 4px;
+  background: rgba(255, 107, 53, 0.15);
+  overflow: hidden;
+}
+.tele__bar-fill {
+  position: absolute;
+  inset: 0;
+  width: 0;
+  background: var(--ember);
+}
+.tele__v {
+  color: var(--ember-glow);
+}
+.tele__addr {
+  color: rgba(255, 255, 255, 0.35);
+  border-left: 1px solid var(--line);
+  padding-left: 10px;
+}
+
+@media (max-width: 820px) {
+  .rail {
+    display: none;
+  }
+  .tele__addr {
+    display: none;
+  }
+}
