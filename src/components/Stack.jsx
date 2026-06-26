@@ -60,7 +60,7 @@ export default function Stack() {
               TECH<em>_</em>STACK
             </h2>
           </div>
-          <p className="sec__note">The toolchain I reach for — scroll to traverse the stack.</p>
+          <p className="sec__note">The toolchain I reach for. Scroll to traverse the stack.</p>
         </div>
 
         <div className="stack__track" ref={trackRef}>

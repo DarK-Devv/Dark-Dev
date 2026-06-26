@@ -12,7 +12,7 @@ const FACTS = [
   { k: 'side', v: 'Crypto Trader / Analyst' },
 ];
 
-// Service Desk @ Euroclear — what it built
+// Service Desk @ Euroclear, what it built
 const STRENGTHS = [
   'Technical troubleshooting',
   'Customer support',
@@ -63,11 +63,11 @@ export default function About() {
           </h2>
         </div>
         <p className="sec__note" data-reveal>
-          A goal-driven engineer and digital builder — turning ideas into clean, scalable, business-driven products.
+          A goal-driven engineer and digital builder, turning ideas into clean, scalable, business-driven products.
         </p>
       </div>
 
-      {/* Row 1 — intro + monitor */}
+      {/* Row 1: intro + monitor */}
       <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6">
         <div className="tcard" data-reveal>
           <span className="tcard__corner tl" />
@@ -76,7 +76,7 @@ export default function About() {
             <div className="w-10 h-10 grid place-items-center text-ember-orange border border-ember-orange/30 bg-ember-orange/5">
               <Terminal size={18} />
             </div>
-            <span className="font-mono text-xs tracking-widest text-ember-orange/70">~/veeti — bash</span>
+            <span className="font-mono text-xs tracking-widest text-ember-orange/70">~/veeti · bash</span>
           </div>
 
           <p className="font-mono text-base md:text-lg leading-relaxed text-stone-300">
@@ -86,7 +86,7 @@ export default function About() {
           </p>
 
           <p className="mt-5 text-stone-300 leading-relaxed font-light max-w-2xl">
-            Hey there 👋 I'm Veeti — a <span className="text-white font-medium">Software Engineer</span>,{' '}
+            Hey there 👋 I'm Veeti, a <span className="text-white font-medium">Software Engineer</span>,{' '}
             <span className="text-white font-medium">CTO &amp; Co-Founder of FHATAL</span>, and a digital builder focused
             on modern, scalable, and practical web-based solutions.
           </p>
@@ -104,7 +104,7 @@ export default function About() {
               <span className="text-white not-italic">
                 "You should learn to do something other than just play on the computer."
               </span>{' '}
-              That comment guided me toward a deeper understanding of technology — and I've been building ever since. 🚀
+              That comment guided me toward a deeper understanding of technology, and I've been building ever since. 🚀
             </p>
           </div>
         </div>
@@ -113,7 +113,7 @@ export default function About() {
           <div className="about__monitor" data-reveal>
             <div className="about__monitor-bar">
               <span className="about__monitor-rec" />
-              <span className="tc">CAM_01 — VEETI.PERE</span>
+              <span className="tc">CAM_01 · VEETI.PERE</span>
               <span className="tc about__monitor-live">LIVE</span>
             </div>
             <div className="about__monitor-img">
@@ -141,7 +141,7 @@ export default function About() {
         </div>
       </div>
 
-      {/* Row 2 — professional background + how I work */}
+      {/* Row 2: professional background + how I work */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
         <div className="tcard" data-reveal>
           <span className="tcard__corner tl" />
@@ -155,7 +155,7 @@ export default function About() {
           </div>
           <p className="text-stone-300 leading-relaxed font-light">
             <span className="text-white font-medium">4 years</span> as a Service Desk Specialist at{' '}
-            <span className="text-white font-medium">Euroclear</span> — where reliability, structure, and calm
+            <span className="text-white font-medium">Euroclear</span>, where reliability, structure, and calm
             decision-making matter under pressure. It sharpened:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 mt-4">
@@ -187,7 +187,7 @@ export default function About() {
             <span className="font-mono text-[10px] uppercase tracking-widest text-ember-orange/70">&gt; how_i_work</span>
           </div>
           <p className="text-stone-300 leading-relaxed font-light">
-            Calm, cooperative, and solution-oriented — whether I'm leading technical direction, working with clients, or
+            Calm, cooperative, and solution-oriented, whether I'm leading technical direction, working with clients, or
             building with a team. What I value:
           </p>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 mt-4">
@@ -204,7 +204,7 @@ export default function About() {
         </div>
       </div>
 
-      {/* Row 3 — focus + interests */}
+      {/* Row 3: focus + interests */}
       <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 mt-6">
         <div className="tcard" data-reveal>
           <span className="tcard__corner tl" />

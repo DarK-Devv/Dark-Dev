@@ -21,7 +21,7 @@ const ROLES = [
     title: 'Scrum Master & Team Player',
     org: 'Leadership & Collaboration',
     tag: 'AGILE',
-    desc: 'Organized, cooperative, and results-oriented. Known for a calm, solution-driven approach — reliability and continuous learning on every team.',
+    desc: 'Organized, cooperative, and results-oriented. Known for a calm, solution-driven approach, with reliability and continuous learning on every team.',
   },
   {
     icon: Gem,
@@ -29,7 +29,7 @@ const ROLES = [
     title: 'Crypto Trader & Analyst',
     org: 'Digital Markets',
     tag: 'INVESTOR',
-    desc: 'Exploring market trends, risk management, and investment strategies — always expanding my edge in the digital economy.',
+    desc: 'Exploring market trends, risk management, and investment strategies, always expanding my edge in the digital economy.',
   },
 ];
 
@@ -76,7 +76,7 @@ export default function Experience() {
           </h2>
         </div>
         <p className="sec__note" data-reveal>
-          The processes running in the background — roles, teams, and markets.
+          The processes running in the background: roles, teams, and markets.
         </p>
       </div>
 
