@@ -1,6 +1,9 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SkillModule from './mech/SkillModule';
+import SystemStatus from './mech/SystemStatus';
+import AlienGlyph from './mech/AlienGlyph';
 import './Stack.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -55,12 +58,13 @@ export default function Stack() {
       <div className="stack__inner">
         <div className="stack__head section-pad">
           <div className="sec__head-l">
+            <AlienGlyph variant="a8" size={16} className="text-signal-bright/50 hidden sm:block" />
             <span className="sec__index">02</span>
             <h2 className="sec__title">
               TECH<em>_</em>STACK
             </h2>
           </div>
-          <p className="sec__note">The toolchain I reach for. Scroll to traverse the stack.</p>
+          <p className="sec__note">Installed hardware modules. Scroll to traverse the stack.</p>
         </div>
 
         <div className="stack__track" ref={trackRef}>
@@ -69,13 +73,11 @@ export default function Stack() {
               <div className="reel__bar">
                 <span className="reel__n tc">{r.n}</span>
                 <span className="reel__title">{r.key}</span>
-                <span className="reel__count tc">{r.items.length} tools</span>
+                <span className="reel__count tc">{r.items.length} modules</span>
               </div>
               <div className="reel__items">
-                {r.items.map((it) => (
-                  <span className="reel__chip" key={it}>
-                    {it}
-                  </span>
+                {r.items.map((it, i) => (
+                  <SkillModule key={it} name={it} index={i} />
                 ))}
               </div>
             </div>
@@ -87,6 +89,7 @@ export default function Stack() {
               <br />
               LEARNING
             </p>
+            <SystemStatus label="ALL MODULES SYNCED" tone="online" className="mt-6" />
           </div>
         </div>
       </div>

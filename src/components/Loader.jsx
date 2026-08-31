@@ -1,6 +1,8 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
-import EmberCore from './EmberCore';
+import AssemblyBadge from './mech/AssemblyBadge';
+import AlienGlyph from './mech/AlienGlyph';
+import { glitchPulse } from '../lib/glitch';
 import './Loader.css';
 
 const R = 132;
@@ -8,11 +10,11 @@ const CIRC = 2 * Math.PI * R;
 
 const STAGES = [
   { at: 0.0, label: 'COLD START' },
-  { at: 0.18, label: 'SPINNING UP CORES' },
-  { at: 0.42, label: 'PRESSURIZING' },
+  { at: 0.18, label: 'POWER COUPLING' },
+  { at: 0.42, label: 'CORE SYNC' },
   { at: 0.66, label: 'IGNITION SEQUENCE' },
-  { at: 0.86, label: 'STABILIZING OUTPUT' },
-  { at: 0.98, label: 'REACTOR ONLINE' },
+  { at: 0.86, label: 'SYSTEMS NOMINAL' },
+  { at: 0.98, label: 'MACHINE ONLINE' },
 ];
 
 export default function Loader({ onDone }) {
@@ -22,6 +24,7 @@ export default function Loader({ onDone }) {
   const statusRef = useRef(null);
   const flashRef = useRef(null);
   const coreWrapRef = useRef(null);
+  const badgeRef = useRef(null);
 
   useEffect(() => {
     const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -31,6 +34,7 @@ export default function Loader({ onDone }) {
       const p = state.p;
       if (arcRef.current) arcRef.current.style.strokeDashoffset = String(CIRC * (1 - p));
       if (pctRef.current) pctRef.current.textContent = String(Math.round(p * 100)).padStart(3, '0');
+      badgeRef.current?.setProgress(p);
       let label = STAGES[0].label;
       for (const s of STAGES) if (p >= s.at) label = s.label;
       if (statusRef.current && statusRef.current.textContent !== label) {
@@ -60,13 +64,14 @@ export default function Loader({ onDone }) {
       tl.to(state, { p: 0.66, duration: 0.3, ease: 'none', onUpdate: update }); // hitch
       tl.to(state, { p: 1, duration: 1.6, ease: 'power2.inOut', onUpdate: update });
 
-      // ignition flare
+      // ignition flare + one-shot system-interference pulse
       tl.fromTo(
         flashRef.current,
         { opacity: 0, scale: 0.2 },
         { opacity: 1, scale: 1, duration: 0.45, ease: 'power2.out' },
         '-=0.15'
       );
+      tl.call(() => glitchPulse(rootRef.current, { duration: 0.3 }), null, '<');
       tl.to('.boot__hud', { opacity: 0, duration: 0.3 }, '<');
       // the whole loader scales into the page rather than wiping
       tl.to(rootRef.current, { scale: 1.18, opacity: 0, duration: 0.7, ease: 'power3.in' }, '-=0.1');
@@ -81,14 +86,14 @@ export default function Loader({ onDone }) {
 
       <div className="boot__top boot__hud">
         <span className="boot__brand"><span className="boot__mark" /> DARK&#8209;DEV</span>
-        <span className="boot__meta tc">REACTOR v2.0</span>
+        <span className="boot__meta tc">MACHINE v2.0</span>
       </div>
 
       <div className="boot__stage">
         <div className="boot__ring" ref={coreWrapRef}>
-          <EmberCore className="boot__core" spin={1.6} />
+          <AssemblyBadge ref={badgeRef} className="boot__core" />
           <svg className="boot__arc" width="300" height="300" viewBox="0 0 300 300">
-            <circle cx="150" cy="150" r={R} fill="none" stroke="rgba(255,107,53,0.1)" strokeWidth="2" />
+            <circle cx="150" cy="150" r={R} fill="none" stroke="rgba(255,107,53,0.12)" strokeWidth="2" />
             <circle
               ref={arcRef}
               cx="150" cy="150" r={R}
@@ -105,6 +110,11 @@ export default function Loader({ onDone }) {
         </div>
 
         <div className="boot__status tc boot__hud" ref={statusRef}>COLD START</div>
+        <div className="boot__glyphs boot__hud">
+          <AlienGlyph variant="a3" size={14} />
+          <AlienGlyph variant="a9" size={14} />
+          <AlienGlyph variant="a3" size={14} style={{ transform: 'scaleX(-1)' }} />
+        </div>
       </div>
 
       <div className="boot__foot boot__hud tc">

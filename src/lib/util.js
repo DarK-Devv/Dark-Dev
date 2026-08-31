@@ -27,3 +27,23 @@ export function toHexAddr(p) {
   const v = Math.floor(clamp(p) * 0xffffff);
   return '0x' + v.toString(16).toUpperCase().padStart(6, '0');
 }
+
+/** fake sector code from progress, e.g. "SEC-04" */
+export function toSector(p) {
+  const n = Math.max(1, Math.ceil(clamp(p) * 12));
+  return `SEC-${pad(n)}`;
+}
+
+/** fake core-temperature readout that drifts with progress, in a fictional unit */
+export function toCoreTemp(p) {
+  const v = 310 + Math.floor(clamp(p) * 42);
+  return `${v}°K`;
+}
+
+/** deterministic [0,1) value seeded from a string, for stable "random" flavor
+ * (fake progress bars, glyph picks) that doesn't jump between renders */
+export function seededFromString(str) {
+  let h = 0;
+  for (let i = 0; i < str.length; i++) h = (h * 31 + str.charCodeAt(i)) | 0;
+  return rand(h);
+}

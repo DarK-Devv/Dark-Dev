@@ -1,6 +1,6 @@
 .about__monitor {
   border: 1px solid var(--line-strong);
-  background: rgba(12, 10, 9, 0.6);
+  background: rgba(11, 11, 13, 0.6);
   padding: 8px;
 }
 .about__monitor-bar {
@@ -10,14 +10,14 @@
   padding: 4px 4px 10px;
   font-size: 10px;
   letter-spacing: 0.12em;
-  color: var(--ember);
+  color: var(--signal-bright);
 }
 .about__monitor-rec {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #22c55e;
-  box-shadow: 0 0 8px rgba(34, 197, 94, 0.7);
+  background: var(--alert-bright);
+  box-shadow: 0 0 8px var(--alert-bright);
   animation: blink 1.6s ease-in-out infinite;
 }
 .about__monitor-live {
@@ -33,7 +33,9 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center 38%;
+  /* The source is a 2738x3651 portrait whose top ~32% is empty backdrop;
+     62% crops that void away so the head sits just below the frame top. */
+  object-position: center 62%;
   filter: grayscale(1) contrast(1.05);
   transition: filter 0.6s var(--ease);
 }
@@ -59,7 +61,7 @@
   transition: border-color 0.25s, background 0.25s, color 0.25s, transform 0.25s;
 }
 .about__chip:hover {
-  border-left-color: var(--ember);
+  border-left-color: var(--signal);
   background: rgba(255, 107, 53, 0.12);
   color: #fff;
   transform: translateX(3px);

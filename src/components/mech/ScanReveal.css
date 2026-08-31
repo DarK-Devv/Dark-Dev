@@ -1,0 +1,15 @@
+.scan-reveal {
+  position: relative;
+}
+.scan-reveal__sweep {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--signal-bright), transparent);
+  box-shadow: 0 0 14px 2px var(--signal);
+  opacity: 0;
+  pointer-events: none;
+  z-index: 5;
+}

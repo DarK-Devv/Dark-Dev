@@ -3,6 +3,10 @@ import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Building2, Users, Gem } from 'lucide-react';
 import { useReveal } from '../lib/useReveal';
+import MechanicalTimeline from './mech/MechanicalTimeline';
+import AlienGlyph from './mech/AlienGlyph';
+import SystemHUD from './mech/SystemHUD';
+import { toSector, toCoreTemp } from '../lib/util';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -68,6 +72,7 @@ export default function Experience() {
     <section className="sec section-pad" id="runtime" data-section ref={ref}>
       <div className="sec__head">
         <div className="sec__head-l">
+          <AlienGlyph variant="a6" size={16} className="text-signal-bright/50 hidden sm:block" />
           <span className="sec__index" data-reveal>
             03
           </span>
@@ -75,16 +80,22 @@ export default function Experience() {
             RUN<em>_</em>TIME
           </h2>
         </div>
-        <p className="sec__note" data-reveal>
-          The processes running in the background: roles, teams, and markets.
-        </p>
+        <div className="flex flex-col items-end gap-3">
+          <p className="sec__note text-right" data-reveal>
+            The processes running in the background: roles, teams, and markets.
+          </p>
+          <SystemHUD
+            className="items-end"
+            items={[{ label: 'LOG', value: 'SYSTEM' }, { label: 'SECTOR', value: toSector(0.4) }, { label: 'CORE', value: toCoreTemp(0.4) }]}
+          />
+        </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-[300px_1fr] gap-10 lg:gap-16 items-start">
         {/* headline stat */}
         <div className="lg:sticky lg:top-24" data-reveal>
           <div className="flex items-end gap-3">
-            <span ref={yearsRef} className="font-display font-bold text-ember-orange text-7xl md:text-8xl leading-none">
+            <span ref={yearsRef} className="font-display font-bold text-signal text-7xl md:text-8xl leading-none">
               00
             </span>
             <span className="font-display font-bold text-white text-7xl md:text-8xl leading-none">+</span>
@@ -95,22 +106,23 @@ export default function Experience() {
         </div>
 
         {/* role log */}
-        <div className="flex flex-col">
+        <MechanicalTimeline className="flex flex-col pl-14">
           {ROLES.map((r) => {
             const Icon = r.icon;
             return (
               <div
                 key={r.pid}
                 data-reveal
-                className="group grid grid-cols-[auto_1fr] gap-5 md:gap-8 py-8 border-t border-white/10 first:border-t-0"
+                className="mtimeline__node group grid grid-cols-[auto_1fr] gap-5 md:gap-8 py-8 border-t border-white/10 first:border-t-0"
               >
-                <div className="w-12 h-12 shrink-0 grid place-items-center text-ember-orange border border-ember-orange/25 bg-ember-orange/5 group-hover:bg-ember-orange/10 transition-colors">
+                <span className="mtimeline__node-marker" aria-hidden="true" />
+                <div className="w-12 h-12 shrink-0 grid place-items-center text-signal border border-signal/25 bg-signal/5 group-hover:bg-signal/10 transition-colors">
                   <Icon size={22} />
                 </div>
                 <div>
                   <div className="flex flex-wrap items-center gap-3 mb-2">
-                    <span className="font-mono text-[10px] tracking-widest text-ember-orange/60">{r.pid}</span>
-                    <span className="font-mono text-[10px] tracking-widest text-ember-glow px-2 py-0.5 border border-ember-orange/20">
+                    <span className="font-mono text-[10px] tracking-widest text-signal/60">{r.pid}</span>
+                    <span className="font-mono text-[10px] tracking-widest text-signal-bright px-2 py-0.5 border border-signal/20">
                       {r.tag}
                     </span>
                   </div>
@@ -123,7 +135,7 @@ export default function Experience() {
               </div>
             );
           })}
-        </div>
+        </MechanicalTimeline>
       </div>
     </section>
   );

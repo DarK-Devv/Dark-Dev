@@ -12,6 +12,8 @@ import Experience from './components/Experience';
 import Fhatal from './components/Fhatal';
 import Contact from './components/Contact';
 import SideRail from './components/SideRail';
+import TargetCursor from './components/mech/TargetCursor';
+import SectionTransition from './components/mech/SectionTransition';
 import { SpeedInsights } from '@vercel/speed-insights/react';
 
 import { setLenis, getLenis } from './lib/lenis';
@@ -89,12 +91,13 @@ function App() {
     <>
       {!loaded && <Loader onDone={onLoaderDone} />}
 
-      <div className="relative min-h-screen w-full overflow-x-hidden bg-luxury-black text-luxury-silver">
-        {/* Ambient background */}
-        <div className="fixed inset-0 z-0 pointer-events-none bg-luxury-black">
-          <div className="absolute top-[-15%] left-[-10%] w-[45%] h-[45%] bg-ember-orange/15 rounded-full blur-[160px] animate-pulse-slow" />
-          <div className="absolute bottom-[-15%] right-[-10%] w-[45%] h-[45%] bg-ember-core/10 rounded-full blur-[160px] animate-pulse-slow delay-1000" />
-          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.06] mix-blend-overlay" />
+      <div className="relative min-h-screen w-full overflow-x-hidden bg-void text-steel">
+        {/* Ambient background — dark gunmetal canvas, energy kept sparse */}
+        <div className="fixed inset-0 z-0 pointer-events-none bg-void">
+          <div className="absolute inset-0 bg-tech-grid opacity-40" />
+          <div className="absolute top-[-15%] left-[-10%] w-[40%] h-[40%] bg-signal/[0.06] rounded-full blur-[160px]" />
+          <div className="absolute bottom-[-15%] right-[-10%] w-[40%] h-[40%] bg-alert/[0.04] rounded-full blur-[160px]" />
+          <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-[0.05] mix-blend-overlay" />
         </div>
 
         <div className="relative z-10">
@@ -102,14 +105,17 @@ function App() {
           <main>
             <Hero ready={loaded} />
             <About />
+            <SectionTransition title="IDENTIFICATION SEQUENCE INITIATED" subtitle="PROFILE SCAN // SUBJECT: VEETI PERE" targetPct={100} />
             <Stack />
             <Experience />
+            <SectionTransition title="SYSTEM ANALYSIS" subtitle="COMPILING VENTURE DATA // SYSTEM 01" targetPct={100} />
             <Fhatal />
             <Contact />
           </main>
         </div>
 
         <SideRail sections={SECTIONS} ready={loaded} />
+        <TargetCursor />
       </div>
 
       <SpeedInsights />
