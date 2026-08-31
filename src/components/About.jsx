@@ -1,6 +1,10 @@
 import { useRef } from 'react';
 import { Terminal, Building2, Workflow, Sparkles, Compass } from 'lucide-react';
 import { useReveal } from '../lib/useReveal';
+import ScanReveal from './mech/ScanReveal';
+import SystemHUD from './mech/SystemHUD';
+import AlienGlyph from './mech/AlienGlyph';
+import { toSector, toCoreTemp } from '../lib/util';
 import darkImg from '../assets/dark.png';
 import './About.css';
 
@@ -52,9 +56,11 @@ export default function About() {
   useReveal(ref);
 
   return (
+    <ScanReveal>
     <section className="sec section-pad" id="whoami" data-section ref={ref}>
       <div className="sec__head">
         <div className="sec__head-l">
+          <AlienGlyph variant="a5" size={16} className="text-signal-bright/50 hidden sm:block" />
           <span className="sec__index" data-reveal>
             01
           </span>
@@ -62,26 +68,36 @@ export default function About() {
             WHO<em>_</em>AM_I
           </h2>
         </div>
-        <p className="sec__note" data-reveal>
-          A goal-driven engineer and digital builder, turning ideas into clean, scalable, business-driven products.
-        </p>
+        <div className="flex flex-col items-end gap-3">
+          <p className="sec__note text-right" data-reveal>
+            A goal-driven engineer and digital builder, turning ideas into clean, scalable, business-driven products.
+          </p>
+          <SystemHUD
+            className="items-end"
+            items={[
+              { label: 'SEQUENCE', value: 'IDENTIFICATION' },
+              { label: 'SECTOR', value: toSector(0.18) },
+              { label: 'CORE', value: toCoreTemp(0.22) },
+            ]}
+          />
+        </div>
       </div>
 
       {/* Row 1: intro + monitor */}
       <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6">
-        <div className="tcard" data-reveal>
+        <div className="tcard tcard--chamfer" data-reveal>
           <span className="tcard__corner tl" />
           <span className="tcard__corner br" />
           <div className="flex items-center gap-3 mb-6">
-            <div className="w-10 h-10 grid place-items-center text-ember-orange border border-ember-orange/30 bg-ember-orange/5">
+            <div className="w-10 h-10 grid place-items-center text-signal border border-signal/30 bg-signal/5">
               <Terminal size={18} />
             </div>
-            <span className="font-mono text-xs tracking-widest text-ember-orange/70">~/veeti · bash</span>
+            <span className="font-mono text-xs tracking-widest text-signal/70">~/veeti · bash</span>
           </div>
 
           <p className="font-mono text-base md:text-lg leading-relaxed text-stone-300">
-            <span className="text-ember-glow">const</span> <span className="text-white">developer</span> ={' '}
-            <span className="text-ember-orange">"Veeti Pere"</span>;{' '}
+            <span className="text-signal-bright">const</span> <span className="text-white">developer</span> ={' '}
+            <span className="text-signal">"Veeti Pere"</span>;{' '}
             <span className="text-stone-500">// aka DarK-Devs</span>
           </p>
 
@@ -93,12 +109,12 @@ export default function About() {
           <p className="mt-4 text-stone-400 leading-relaxed font-light max-w-2xl">
             My background is in <span className="text-white">ICT Engineering</span>, specializing in Software
             Engineering. Over time that foundation has grown into a broader focus on{' '}
-            <span className="text-ember-orange">SaaS platforms</span>, web applications, automation, AI-assisted
+            <span className="text-signal">SaaS platforms</span>, web applications, automation, AI-assisted
             workflows, product thinking, and digital business development.
           </p>
 
-          <div className="mt-7 border-l-2 border-ember-orange/50 pl-5">
-            <p className="text-[10px] font-mono uppercase tracking-widest text-ember-glow mb-2">&gt; origin_story</p>
+          <div className="mt-7 border-l-2 border-signal/50 pl-5">
+            <p className="text-[10px] font-mono uppercase tracking-widest text-signal-bright mb-2">&gt; origin_story</p>
             <p className="text-stone-400 text-sm leading-relaxed font-light italic">
               My interest in tech started young. After my computer crashed from viruses, my father said:{' '}
               <span className="text-white not-italic">
@@ -122,10 +138,10 @@ export default function About() {
             </div>
           </div>
 
-          <div className="tcard flex flex-col justify-center gap-1" data-reveal>
+          <div className="tcard tcard--chamfer flex flex-col justify-center gap-1" data-reveal>
             <span className="tcard__corner tl" />
             <span className="tcard__corner br" />
-            <p className="text-[10px] font-mono uppercase tracking-widest text-ember-orange/60 mb-4">
+            <p className="text-[10px] font-mono uppercase tracking-widest text-signal/60 mb-4">
               &gt; whoami --json
             </p>
             {FACTS.map((f) => (
@@ -133,7 +149,7 @@ export default function About() {
                 key={f.k}
                 className="flex items-baseline justify-between gap-4 py-3 border-b border-white/5 last:border-0"
               >
-                <span className="font-mono text-xs text-ember-orange/70">{f.k}</span>
+                <span className="font-mono text-xs text-signal/70">{f.k}</span>
                 <span className="font-mono text-sm text-white text-right">{f.v}</span>
               </div>
             ))}
@@ -143,13 +159,13 @@ export default function About() {
 
       {/* Row 2: professional background + how I work */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6">
-        <div className="tcard" data-reveal>
+        <div className="tcard tcard--chamfer" data-reveal>
           <span className="tcard__corner tl" />
           <div className="flex items-center gap-3 mb-5">
-            <div className="w-9 h-9 grid place-items-center text-ember-orange border border-ember-orange/25 bg-ember-orange/5">
+            <div className="w-9 h-9 grid place-items-center text-signal border border-signal/25 bg-signal/5">
               <Building2 size={16} />
             </div>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-ember-orange/70">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-signal/70">
               &gt; professional_background
             </span>
           </div>
@@ -161,7 +177,7 @@ export default function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 mt-4">
             {STRENGTHS.map((s) => (
               <div key={s} className="flex items-center gap-2 font-mono text-xs text-stone-400">
-                <span className="text-ember-orange shrink-0">::</span>
+                <span className="text-signal shrink-0">::</span>
                 {s}
               </div>
             ))}
@@ -178,13 +194,13 @@ export default function About() {
           </div>
         </div>
 
-        <div className="tcard" data-reveal>
+        <div className="tcard tcard--chamfer" data-reveal>
           <span className="tcard__corner tl" />
           <div className="flex items-center gap-3 mb-5">
-            <div className="w-9 h-9 grid place-items-center text-ember-orange border border-ember-orange/25 bg-ember-orange/5">
+            <div className="w-9 h-9 grid place-items-center text-signal border border-signal/25 bg-signal/5">
               <Workflow size={16} />
             </div>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-ember-orange/70">&gt; how_i_work</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-signal/70">&gt; how_i_work</span>
           </div>
           <p className="text-stone-300 leading-relaxed font-light">
             Calm, cooperative, and solution-oriented, whether I'm leading technical direction, working with clients, or
@@ -193,12 +209,12 @@ export default function About() {
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 gap-x-4 mt-4">
             {VALUES.map((v) => (
               <div key={v} className="flex items-center gap-2 font-mono text-xs text-stone-400">
-                <span className="text-ember-orange shrink-0">::</span>
+                <span className="text-signal shrink-0">::</span>
                 {v}
               </div>
             ))}
           </div>
-          <p className="mt-6 text-sm font-light leading-relaxed text-stone-400 border-l-2 border-ember-orange/40 pl-4">
+          <p className="mt-6 text-sm font-light leading-relaxed text-stone-400 border-l-2 border-signal/40 pl-4">
             I believe good technology should make work <span className="text-white">easier</span>, not more complicated.
           </p>
         </div>
@@ -206,13 +222,13 @@ export default function About() {
 
       {/* Row 3: focus + interests */}
       <div className="grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-6 mt-6">
-        <div className="tcard" data-reveal>
+        <div className="tcard tcard--chamfer" data-reveal>
           <span className="tcard__corner tl" />
           <div className="flex items-center gap-3 mb-5">
-            <div className="w-9 h-9 grid place-items-center text-ember-orange border border-ember-orange/25 bg-ember-orange/5">
+            <div className="w-9 h-9 grid place-items-center text-signal border border-signal/25 bg-signal/5">
               <Sparkles size={16} />
             </div>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-ember-orange/70">&gt; focused_on</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-signal/70">&gt; focused_on</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {FOCUS.map((f) => (
@@ -223,13 +239,13 @@ export default function About() {
           </div>
         </div>
 
-        <div className="tcard" data-reveal>
+        <div className="tcard tcard--chamfer" data-reveal>
           <span className="tcard__corner tl" />
           <div className="flex items-center gap-3 mb-5">
-            <div className="w-9 h-9 grid place-items-center text-ember-orange border border-ember-orange/25 bg-ember-orange/5">
+            <div className="w-9 h-9 grid place-items-center text-signal border border-signal/25 bg-signal/5">
               <Compass size={16} />
             </div>
-            <span className="font-mono text-[10px] uppercase tracking-widest text-ember-orange/70">&gt; interests</span>
+            <span className="font-mono text-[10px] uppercase tracking-widest text-signal/70">&gt; interests</span>
           </div>
           <div className="flex flex-wrap gap-2">
             {INTERESTS.map((i) => (
@@ -241,5 +257,6 @@ export default function About() {
         </div>
       </div>
     </section>
+    </ScanReveal>
   );
 }

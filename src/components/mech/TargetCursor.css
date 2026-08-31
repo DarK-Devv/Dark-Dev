@@ -1,0 +1,34 @@
+.tcursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translate(-50%, -50%);
+  will-change: transform;
+  mix-blend-mode: difference;
+}
+.tcursor__mark {
+  color: #fff;
+  transition: opacity 0.15s;
+}
+.tcursor__lock {
+  position: absolute;
+  top: 16px;
+  left: 16px;
+  font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
+  font-size: 9px;
+  letter-spacing: 0.2em;
+  color: var(--signal-bright);
+  white-space: nowrap;
+  opacity: 0;
+  transition: opacity 0.15s;
+  mix-blend-mode: normal;
+}
+.tcursor.is-lock .tcursor__lock {
+  opacity: 1;
+}
+
+@media (pointer: coarse) {
+  .tcursor { display: none; }
+}

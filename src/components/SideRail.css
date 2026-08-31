@@ -17,10 +17,22 @@
 .rail__fill {
   position: absolute;
   inset: 0;
-  background: var(--ember);
+  background: linear-gradient(to bottom, var(--signal-bright), var(--signal) 40%, var(--signal-dim));
   box-shadow: 0 0 8px rgba(255, 107, 53, 0.8);
   transform: scaleY(0);
   transform-origin: top center;
+  overflow: hidden;
+}
+.rail__fill::after {
+  content: '';
+  position: absolute;
+  inset: -40% 0;
+  background: linear-gradient(to bottom, transparent, rgba(255, 255, 255, 0.7), transparent);
+  background-size: 100% 40%;
+  animation: conduit-flow 2.2s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .rail__fill::after { animation: none; }
 }
 .rail__list {
   list-style: none;
@@ -59,15 +71,15 @@
   color: #fff;
 }
 .rail__node.is-active .rail__dot {
-  background: var(--ember);
-  border-color: var(--ember);
+  background: var(--signal);
+  border-color: var(--signal);
   box-shadow: 0 0 12px rgba(255, 107, 53, 0.9);
   transform: scale(1.25);
 }
 .rail__node.is-active .rail__label {
   opacity: 1;
   transform: translateX(0);
-  color: var(--ember);
+  color: var(--signal);
 }
 
 /* ---- corner telemetry HUD ---- */
@@ -91,7 +103,7 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: var(--ember);
+  background: var(--signal);
   box-shadow: 0 0 8px rgba(255, 107, 53, 0.9);
   animation: blink 1.4s ease-in-out infinite;
 }
@@ -109,10 +121,10 @@
   position: absolute;
   inset: 0;
   width: 0;
-  background: var(--ember);
+  background: var(--signal);
 }
 .tele__v {
-  color: var(--ember-glow);
+  color: var(--signal-bright);
 }
 .tele__addr {
   color: rgba(255, 255, 255, 0.35);

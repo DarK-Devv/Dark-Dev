@@ -23,7 +23,7 @@
 .sec__index {
   font-family: 'JetBrains Mono', 'JetBrains Mono Fallback', monospace;
   font-size: 13px;
-  color: var(--ember);
+  color: var(--signal-bright);
   letter-spacing: 0.1em;
 }
 .sec__title {
@@ -37,7 +37,7 @@
 }
 .sec__title em {
   font-style: normal;
-  color: var(--ember);
+  color: var(--signal-bright);
 }
 .sec__note {
   max-width: 38ch;
@@ -75,4 +75,29 @@
   right: 0;
   border-bottom: 2px solid var(--line-strong);
   border-right: 2px solid var(--line-strong);
+}
+
+/* Chamfered variant — angular machine-panel corners instead of rounded/bracket */
+.tcard--chamfer {
+  --chamfer: 16px;
+  clip-path: polygon(
+    var(--chamfer) 0, 100% 0, 100% calc(100% - var(--chamfer)),
+    calc(100% - var(--chamfer)) 100%, 0 100%, 0 var(--chamfer)
+  );
+}
+.tcard--chamfer::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  clip-path: inherit;
+  background: linear-gradient(135deg, var(--line-strong), transparent 40%, transparent 60%, var(--line-strong));
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  transition: background 0.3s;
+}
+.tcard--chamfer:hover::before {
+  background: linear-gradient(135deg, var(--signal), transparent 40%, transparent 60%, var(--signal));
 }

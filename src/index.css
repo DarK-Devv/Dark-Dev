@@ -35,23 +35,29 @@
 }
 
 /* ============================================================
-   DARK-DEV / "RUNTIME" design system
-   Near-black canvas, ember accent, technical monospace HUD.
+   DARK-DEV / "MACHINE" design system
+   Near-black gunmetal canvas, purple signal-energy accent,
+   crimson reserved for warning states, technical mono HUD.
    ============================================================ */
 
 :root {
-  --black: #050505;
-  --char: #0c0a09;
-  --ember: #ff6b35;
-  --ember-glow: #ffb627;
-  --ember-core: #ff4500;
+  --void: #050506;
+  --void-100: #0b0b0d;
+  --void-200: #131316;
+  --signal: #FF6B35;
+  --signal-bright: #FFB627;
+  --signal-dim: #7A3712;
+  --signal-core: #FF4500;
+  --alert: #a11d2e;
+  --alert-bright: #e0304a;
   --line: rgba(255, 107, 53, 0.14);
   --line-strong: rgba(255, 107, 53, 0.32);
-  --silver: #c0c0c0;
+  --silver: #8a8a92;
 
   --rail-h: 60px;
   --gut: clamp(20px, 5vw, 80px);
   --ease: cubic-bezier(0.22, 1, 0.36, 1);
+  --chamfer: 14px;
 }
 
 @layer base {
@@ -60,7 +66,7 @@
   }
 
   body {
-    @apply bg-luxury-black text-luxury-silver font-sans antialiased overflow-x-hidden;
+    @apply bg-void text-steel font-sans antialiased overflow-x-hidden;
     text-rendering: optimizeLegibility;
   }
 
@@ -88,18 +94,18 @@ html.lenis body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  @apply bg-luxury-charcoal;
+  background: var(--void-100);
 }
 ::-webkit-scrollbar-thumb {
   background: var(--line-strong);
   border-radius: 9999px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--ember);
+  background: var(--signal);
 }
 
 ::selection {
-  background: var(--ember);
+  background: var(--signal);
   color: #000;
 }
 
@@ -109,7 +115,7 @@ html.lenis body {
   font-size: 11px;
   letter-spacing: 0.22em;
   text-transform: uppercase;
-  color: var(--ember);
+  color: var(--signal-bright);
 }
 
 .tc {
@@ -129,6 +135,23 @@ html.lenis body {
     linear-gradient(to right, rgba(255, 107, 53, 0.05) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(255, 107, 53, 0.05) 1px, transparent 1px);
   background-size: 64px 64px;
+}
+
+/* ---- Alien-machine chamfer utility ----
+   Angular clipped corners for panels/buttons; --chamfer controls cut size. */
+.chamfered {
+  clip-path: polygon(
+    var(--chamfer) 0, 100% 0, 100% calc(100% - var(--chamfer)),
+    calc(100% - var(--chamfer)) 100%, 0 100%, 0 var(--chamfer)
+  );
+}
+
+/* plain global keyframe (not routed through a Tailwind animate-* utility,
+   so it stays available to hand-authored component CSS regardless of
+   Tailwind's content-scanning) */
+@keyframes conduit-flow {
+  0% { background-position: 0 -120%; }
+  100% { background-position: 0 120%; }
 }
 
 @media (prefers-reduced-motion: reduce) {

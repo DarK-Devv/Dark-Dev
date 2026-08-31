@@ -2,6 +2,8 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { getLenis } from '../lib/lenis';
+import AlienGlyph from './mech/AlienGlyph';
+import MechanicalButton from './mech/MechanicalButton';
 import './Navbar.css';
 
 gsap.registerPlugin(ScrollTrigger);
@@ -34,11 +36,12 @@ export default function Navbar({ ready }) {
   return (
     <nav className="nav" ref={ref}>
       <div className="nav__brand">
+        <AlienGlyph variant="a1" size={16} className="nav__glyph" />
         Dark<span>-Dev</span>
       </div>
-      <button className="nav__cta" onClick={toContact}>
+      <MechanicalButton onClick={toContact} variant="ghost" glyph="a4">
         INITIATE_CONTACT
-      </button>
+      </MechanicalButton>
     </nav>
   );
 }
